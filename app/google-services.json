@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "15885979934",
+    "firebase_url": "https://hospitalappointy-bc0aa.firebaseio.com",
+    "project_id": "hospitalappointy-bc0aa",
+    "storage_bucket": "hospitalappointy-bc0aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15885979934:android:7a6d1d64ade2ae78",
+        "android_client_info": {
+          "package_name": "com.example.aman.hospitalappointy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15885979934-egvdj49ovguf4dfhv4mln9tnphkl7hjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aman.hospitalappointy",
+            "certificate_hash": "a94b9e543979517f13d5818d668c77675200e510"
+          }
+        },
+        {
+          "client_id": "15885979934-irmsmge0k5jklh4vjgvv1suc33ieshu0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzEXRhgkkW4i7jVXwTlJnf_0rzJ10YoWM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15885979934-irmsmge0k5jklh4vjgvv1suc33ieshu0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

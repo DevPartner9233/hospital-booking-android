@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -87,19 +88,11 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                if(checkedId == R.id.reg_male_radiobtn){
-
-                    Toast.makeText(Patient_RegistrationActivity.this,"Male",Toast.LENGTH_LONG).show();
+                switch(checkedId){
+                    case R.id.reg_male_radiobtn:
+                        Toast.makeText(Patient_RegistrationActivity.this,"Male",Toast.LENGTH_LONG).show();
+                        break;
                 }
-                if(checkedId == R.id.reg_female_radiobtn){
-
-                    Toast.makeText(Patient_RegistrationActivity.this,"Female",Toast.LENGTH_LONG).show();
-                }
-                if(checkedId == R.id.reg_other_radiobtn){
-
-                    Toast.makeText(Patient_RegistrationActivity.this,"Other",Toast.LENGTH_LONG).show();
-                }
-
             }
         });
 

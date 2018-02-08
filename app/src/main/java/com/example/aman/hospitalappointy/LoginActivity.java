@@ -1,9 +1,13 @@
 package com.example.aman.hospitalappointy;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,9 +22,13 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout mEmail;
     private TextInputLayout mPassword;
     private Button mLogin;
+    private Button mForgot;
+    private Button mRegister;
 
     //Firebase Auth
     private FirebaseAuth mAuth;
+    private Toolbar mToolbar;
+    private ProgressDialog mLoginProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +37,18 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        mToolbar = (Toolbar) findViewById(R.id.login_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("LOG IN");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mLoginProgress = new ProgressDialog(this);
+
         mEmail = (TextInputLayout) findViewById(R.id.login_email_layout);
         mPassword = (TextInputLayout) findViewById(R.id.login_password_layout);
         mLogin = (Button) findViewById(R.id.login_button);
+        mForgot = (Button) findViewById(R.id.login_forgot_button);
+        mRegister = (Button) findViewById(R.id.login_register_button);
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,16 +57,58 @@ public class LoginActivity extends AppCompatActivity {
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
 
-                mAuth.signInWithEmailAndPassword(email,password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
 
-                        Toast.makeText(LoginActivity.this,"Successfully Logged IN",Toast.LENGTH_LONG).show();
-                    }
-                });
+                    mLoginProgress.setTitle("Loggin In");
+                    mLoginProgress.setMessage("Please wait! While your Account is Logging In");
+                    mLoginProgress.setCanceledOnTouchOutside(false);
+                    mLoginProgress.show();
+
+                    login(email,password);
+                }
+                else {
+                    Toast.makeText(LoginActivity.this,"Please Enter Email & Password",Toast.LENGTH_LONG).show();
+                }
 
             }
         });
+
+        mForgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this,"We Are Working On Forgot Password",Toast.LENGTH_LONG).show();
+            }
+        });
+        mRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent registration_Intent = new Intent(LoginActivity.this, Patient_RegistrationActivity.class);
+                startActivity(registration_Intent);
+            }
+        });
+    }
+
+    private void login(String email, String password) {
+
+        mAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+
+                            mLoginProgress.dismiss();
+                            Intent main_Intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(main_Intent);
+                            Toast.makeText(LoginActivity.this,"Successfully Logged IN",Toast.LENGTH_LONG).show();
+                        }
+                        else {
+
+                            mLoginProgress.dismiss();
+                            Toast.makeText(LoginActivity.this,"Entered Email & Password is wrong",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
     }
 }

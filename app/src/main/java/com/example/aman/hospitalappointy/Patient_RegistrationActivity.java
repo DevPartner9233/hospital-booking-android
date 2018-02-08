@@ -1,54 +1,154 @@
 package com.example.aman.hospitalappointy;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import org.w3c.dom.Text;
+
+import java.util.HashMap;
 
 public class Patient_RegistrationActivity extends AppCompatActivity {
 
+    private TextInputLayout mName;
+    private TextInputLayout mAge;
+    private TextInputLayout mBloodGroup;
+    private TextInputLayout mContactNumber;
+    private TextInputLayout mAddress;
     private TextInputLayout mEmail;
     private TextInputLayout mPassword;
-    private Button mLogin;
+    private Button mRegister;
 
     //Firebase Auth
     private FirebaseAuth mAuth;
+
+    //Database Reference
+    private DatabaseReference mUserDetails;
+
+    private Toolbar mToolbar;
+    private ProgressDialog mRegProgress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient__registration);
 
+        //Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        // Toolbar
+        mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle("Registration");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mRegProgress = new ProgressDialog(this);
+
+        //User Details
+        mName = (TextInputLayout) findViewById(R.id.reg_name_layout);
+        mAge = (TextInputLayout) findViewById(R.id.reg_age_layout);
+        mBloodGroup = (TextInputLayout) findViewById(R.id.reg_bloodgroup_layout);
+        mContactNumber = (TextInputLayout) findViewById(R.id.reg_contact_layout);
+        mAddress = (TextInputLayout) findViewById(R.id.reg_address_layout);
 
         mEmail = (TextInputLayout) findViewById(R.id.reg_email_layout);
         mPassword = (TextInputLayout) findViewById(R.id.reg_password_layout);
-        mLogin = (Button) findViewById(R.id.reg_button);
+        mRegister = (Button) findViewById(R.id.reg_button);
 
-        mLogin.setOnClickListener(new View.OnClickListener() {
+        mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                String name = mName.getEditText().getText().toString();
+                String age = mAge.getEditText().getText().toString();
+                String bloodgroup = mBloodGroup.getEditText().getText().toString();
+                String contactnumber = mContactNumber.getEditText().getText().toString();
+                String address = mAddress.getEditText().getText().toString();
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
 
-                mAuth.createUserWithEmailAndPassword(email,password)
-                        .addOnCompleteListener(Patient_RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
 
-                                Toast.makeText(Patient_RegistrationActivity.this,"Successfully Account Created",Toast.LENGTH_LONG).show();
-                            }
-                        });
+                    mRegProgress.setTitle("Creating Account");
+                    mRegProgress.setMessage("Please Wait! We are Processing");
+                    mRegProgress.setCanceledOnTouchOutside(false);
+                    mRegProgress.show();
+
+                    createAccount(name,age,bloodgroup,contactnumber,address,email,password);
+
+                }
+                else{
+
+                    Toast.makeText(Patient_RegistrationActivity.this,"Please enter email & password",Toast.LENGTH_LONG).show();
+
+                }
 
             }
         });
     }
+
+    private void createAccount(final String name, final String age, final String bloodgroup, final String contactnumber, final String address, final String email, final String password) {
+
+        mAuth.createUserWithEmailAndPassword(email,password)
+                .addOnCompleteListener(Patient_RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+
+                            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                            String uid = currentUser.getUid();
+
+                            mUserDetails = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(uid);
+
+                            HashMap<String,String> userDetails = new HashMap<>();
+                            userDetails.put("Name",name);
+                            userDetails.put("Age",age);
+                            userDetails.put("Blood_Group",bloodgroup);
+                            userDetails.put("Contact_N0",contactnumber);
+                            userDetails.put("Address",address);
+                            userDetails.put("User_ID",uid);
+                            userDetails.put("Email",email);
+                            userDetails.put("Password",password);
+
+                            mUserDetails.setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    mRegProgress.dismiss();
+                                    Toast.makeText(Patient_RegistrationActivity.this,"Successfully Account Created",Toast.LENGTH_SHORT).show();
+
+                                    Intent main_Intent = new Intent(Patient_RegistrationActivity.this, MainActivity.class);
+                                    startActivity(main_Intent);
+                                }
+                            });
+
+
+                        }
+                        else {
+
+                            mRegProgress.hide();
+                            Toast.makeText(Patient_RegistrationActivity.this,"Creating Account Failed",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+    }
+
+
 }

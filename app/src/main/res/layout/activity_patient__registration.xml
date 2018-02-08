@@ -7,11 +7,62 @@
     android:orientation="vertical"
     tools:context="com.example.aman.hospitalappointy.Patient_RegistrationActivity">
 
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/register_toolbar"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/reg_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/reg_age_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Age"
+            android:inputType="number"
+            android:maxLength="3"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/reg_bloodgroup_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Blood Group"
+            android:maxLength="10"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/reg_contact_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contact Number"
+            android:inputType="number"
+            android:maxLength="10"/>
+    </android.support.design.widget.TextInputLayout>
+
     <android.support.design.widget.TextInputLayout
         android:id="@+id/reg_email_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -23,8 +74,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/reg_password_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
+        android:layout_height="wrap_content">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -35,8 +85,12 @@
 
     <Button
         android:id="@+id/reg_button"
-        android:layout_marginStart="130dp"
-        android:layout_width="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:background="@drawable/button_background"
+        android:text="Register"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+
 </LinearLayout>

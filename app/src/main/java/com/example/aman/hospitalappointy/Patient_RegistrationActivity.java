@@ -147,7 +147,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                             String uid = currentUser.getUid();
 
-                            mUserDetails = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(name+"_"+uid);
+                            mUserDetails = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(uid);
 
                             HashMap<String,String> userDetails = new HashMap<>();
                             userDetails.put("Name",name);

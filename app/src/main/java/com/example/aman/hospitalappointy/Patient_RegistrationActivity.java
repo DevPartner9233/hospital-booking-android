@@ -110,8 +110,11 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                     else if(checkedId == R.id.reg_other_radiobtn){
                         gender = "Other";
                     }
+                    else {
+                        Toast.makeText(getBaseContext(),"Select Gender",Toast.LENGTH_LONG).show();
+                    }
 
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(name) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(contactnumber) && !TextUtils.isEmpty(address)){
 
                     mRegProgress.setTitle("Creating Account");
                     mRegProgress.setMessage("Please Wait! We are Processing");

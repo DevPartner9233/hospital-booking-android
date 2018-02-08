@@ -43,28 +43,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="20dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Gender"/>
+            android:layout_marginTop="8dp"
+            android:text="Gender"
+            android:textStyle="bold"/>
 
         <RadioGroup
+            android:id="@+id/reg_gender_radiogroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:orientation="horizontal">
             <RadioButton
+                android:id="@+id/reg_male_radiobtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Male"/>
             <RadioButton
+                android:id="@+id/reg_female_radiobtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Female"/>
             <RadioButton
+                android:id="@+id/reg_other_radiobtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Other"/>

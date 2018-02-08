@@ -10,6 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 
@@ -36,6 +38,13 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
     private TextInputLayout mPassword;
     private Button mRegister;
 
+    //RadioGroup & RadioButton
+    private RadioGroup mGender;
+    private RadioButton mMale;
+    private RadioButton mFemale;
+    private RadioButton mOther;
+
+
     //Firebase Auth
     private FirebaseAuth mAuth;
 
@@ -60,6 +69,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
 
         mRegProgress = new ProgressDialog(this);
 
+
         //User Details
         mName = (TextInputLayout) findViewById(R.id.reg_name_layout);
         mAge = (TextInputLayout) findViewById(R.id.reg_age_layout);
@@ -70,6 +80,28 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         mEmail = (TextInputLayout) findViewById(R.id.reg_email_layout);
         mPassword = (TextInputLayout) findViewById(R.id.reg_password_layout);
         mRegister = (Button) findViewById(R.id.reg_button);
+
+        //RadioGroup
+        mGender = (RadioGroup) findViewById(R.id.reg_gender_radiogroup);
+        mGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if(checkedId == R.id.reg_male_radiobtn){
+
+                    Toast.makeText(Patient_RegistrationActivity.this,"Male",Toast.LENGTH_LONG).show();
+                }
+                if(checkedId == R.id.reg_female_radiobtn){
+
+                    Toast.makeText(Patient_RegistrationActivity.this,"Female",Toast.LENGTH_LONG).show();
+                }
+                if(checkedId == R.id.reg_other_radiobtn){
+
+                    Toast.makeText(Patient_RegistrationActivity.this,"Other",Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override

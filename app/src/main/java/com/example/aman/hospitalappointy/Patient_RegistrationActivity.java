@@ -82,19 +82,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         mPassword = (TextInputLayout) findViewById(R.id.reg_password_layout);
         mRegister = (Button) findViewById(R.id.reg_button);
 
-        //RadioGroup
-        mGender = (RadioGroup) findViewById(R.id.reg_gender_radiogroup);
-        mGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                switch(checkedId){
-                    case R.id.reg_male_radiobtn:
-                        Toast.makeText(Patient_RegistrationActivity.this,"Male",Toast.LENGTH_LONG).show();
-                        break;
-                }
-            }
-        });
 
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +95,21 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                 String address = mAddress.getEditText().getText().toString();
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
+                String gender = "";
+
+                //RadioGroup
+                mGender = (RadioGroup) findViewById(R.id.reg_gender_radiogroup);
+                int checkedId = mGender.getCheckedRadioButtonId();
+
+                    if(checkedId == R.id.reg_male_radiobtn){
+                        gender = "Male";
+                    }
+                    else if(checkedId == R.id.reg_female_radiobtn){
+                        gender = "Female";
+                    }
+                    else if(checkedId == R.id.reg_other_radiobtn){
+                        gender = "Other";
+                    }
 
                 if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
 
@@ -115,7 +118,8 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
 
-                    createAccount(name,age,bloodgroup,contactnumber,address,email,password);
+
+                    createAccount(name,age,gender,bloodgroup,contactnumber,address,email,password);
 
                 }
                 else{
@@ -128,7 +132,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void createAccount(final String name, final String age, final String bloodgroup, final String contactnumber, final String address, final String email, final String password) {
+    private void createAccount(final String name, final String age,final String gender, final String bloodgroup, final String contactnumber, final String address, final String email, final String password) {
 
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(Patient_RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
@@ -145,6 +149,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                             HashMap<String,String> userDetails = new HashMap<>();
                             userDetails.put("Name",name);
                             userDetails.put("Age",age);
+                            userDetails.put("Gender",gender);
                             userDetails.put("Blood_Group",bloodgroup);
                             userDetails.put("Contact_N0",contactnumber);
                             userDetails.put("Address",address);

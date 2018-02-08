@@ -95,7 +95,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                 }
                 else{
 
-                    Toast.makeText(Patient_RegistrationActivity.this,"Please enter email & password",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Patient_RegistrationActivity.this,"Please fill all field",Toast.LENGTH_LONG).show();
 
                 }
 

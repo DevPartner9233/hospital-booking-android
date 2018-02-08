@@ -98,6 +98,8 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
 
                             mLoginProgress.dismiss();
+                            Intent main_Intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(main_Intent);
                             Toast.makeText(LoginActivity.this,"Successfully Logged IN",Toast.LENGTH_LONG).show();
                         }
                         else {

@@ -106,6 +106,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_background"
         android:text="Register"
+        android:textSize="20dp"
         android:textColor="#ffffff"
         android:textStyle="bold"/>
 

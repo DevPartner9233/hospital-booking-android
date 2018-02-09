@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <group android:id="@+id/sdd" android:checkableBehavior="single">
     <item android:id="@+id/nav_home"
-        android:title="Home"/>
+        android:title="Home"
+        />
     <item android:id="@+id/nav_showAppointment"
         android:title="Show Appointment"/>
     <item android:id="@+id/nav_login"
         android:title="Login"/>
     <item android:id="@+id/nav_aboutus"
         android:title="About Us"/>
+
+        </group>
+
+    <group android:id="@+id/sdddxdddsd" android:checkableBehavior="single">
+        <item android:id="@+id/nav_xcvcdfdhome"
+            android:title="Home"/>
+        <item android:id="@+id/nav_sbchowAppointment"
+            android:title="Show Appointment"/>
+        <item android:id="@+id/vcnav_login"
+            android:title="Login"/>
+        <item android:id="@+id/navvv_aboutus"
+            android:title="About Us"/>
+
+    </group>
 </menu>

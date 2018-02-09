@@ -92,7 +92,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Blood Group"
+            android:hint="Blood Group (Optional)"
             android:inputType="textPersonName"
             android:maxLength="10"/>
     </android.support.design.widget.TextInputLayout>

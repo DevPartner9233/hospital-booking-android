@@ -22,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button mLogin;
-
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
@@ -51,15 +49,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mNavigationView = (NavigationView) findViewById(R.id.main_nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        mLogin = (Button) findViewById(R.id.main_login_btn);
-        mLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent login_Intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(login_Intent);
-            }
-        });
     }
 
 
@@ -80,21 +69,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch(item.getItemId()){
             case R.id.nav_home:
                 Toast.makeText(getBaseContext(),"Home Clicked",Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.nav_showAppointment:
                 Toast.makeText(getBaseContext(),"Show Appointment Clicked",Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.nav_login:
-                Toast.makeText(getBaseContext(),"Login Clicked",Toast.LENGTH_LONG).show();
+                Intent login_Intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(login_Intent);
+                break;
 
             case R.id.nav_helps:
                 Toast.makeText(getBaseContext(),"Help Clicked",Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.nav_feedback:
                 Toast.makeText(getBaseContext(),"Feedback Clicked",Toast.LENGTH_LONG).show();
+                break;
 
             case R.id.nav_aboutus:
                 Toast.makeText(getBaseContext(),"About Us Clicked",Toast.LENGTH_LONG).show();
+                break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;

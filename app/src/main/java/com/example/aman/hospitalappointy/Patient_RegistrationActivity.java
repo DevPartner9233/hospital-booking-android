@@ -41,9 +41,6 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
 
     //RadioGroup & RadioButton
     private RadioGroup mGender;
-    private RadioButton mMale;
-    private RadioButton mFemale;
-    private RadioButton mOther;
 
 
     //Firebase Auth

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,10 +29,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private NavigationView mNavigationView;
 
+    //Firebase Auth
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mAuth = FirebaseAuth.getInstance();
 
         //Toolbar
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
@@ -51,6 +57,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in  or not
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        if(currentUser == null){
+            //Disable Navigation item (Log Out)
+            Menu menuNav = mNavigationView.getMenu();
+            MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
+            nav_logOut.setEnabled(false);
+            Toast.makeText(getBaseContext(),"User is Not Logged In ",Toast.LENGTH_LONG).show();
+
+        }else {
+
+            //Disable Navigation item (Login)
+            Menu menuNav = mNavigationView.getMenu();
+            MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
+            nav_logIn.setEnabled(false);
+
+            Toast.makeText(getBaseContext(),"User is Logged In ",Toast.LENGTH_LONG).show();
+
+            MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
+            nav_logOut.setEnabled(true);
+        }
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -78,6 +109,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_login:
                 Intent login_Intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(login_Intent);
+                break;
+
+            case R.id.nav_logout:
+                FirebaseAuth.getInstance().signOut();
+
+                //Enabling Navigation item (Login) which is disabled during onStart
+                Menu menuNav = mNavigationView.getMenu();
+                MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
+                nav_logIn.setEnabled(true);
+
+                Toast.makeText(getBaseContext(),"Successfully Logged Out",Toast.LENGTH_LONG).show();
+
+               //Disabling Navigation item (Log Out)
+                MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
+                nav_logOut.setEnabled(false);
                 break;
 
             case R.id.nav_helps:

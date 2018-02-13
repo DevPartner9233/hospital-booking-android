@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.drm.DrmStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,8 +29,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
-
     private NavigationView mNavigationView;
+
+    private TabLayout mTabLayout;
+    private ViewPager mViewPager;
+    private Fragment_SectionPagerAdapter mFragment_SectionPagerAdapter;
 
     //Firebase Auth
     private FirebaseAuth mAuth;
@@ -54,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //NavigationView
         mNavigationView = (NavigationView) findViewById(R.id.main_nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        //TabLayout , SectionPagerAdapter & ViewPager
+        mViewPager = (ViewPager) findViewById(R.id.main_ViewPager);
+        mFragment_SectionPagerAdapter = new Fragment_SectionPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mFragment_SectionPagerAdapter);
+
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabLayout);
+        mTabLayout.setupWithViewPager(mViewPager);
 
     }
 

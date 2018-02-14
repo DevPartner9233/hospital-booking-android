@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             Toast.makeText(getBaseContext(),"User is Logged In ",Toast.LENGTH_LONG).show();
 
+            //Enable Navigation item (Log Out)
             MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
             nav_logOut.setEnabled(true);
         }

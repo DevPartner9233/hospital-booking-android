@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aman.hospitalappointy">
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,14 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"
+        <activity
+            android:name=".LoginActivity"
             android:parentActivityName=".MainActivity" />
-
         <activity android:name=".Patient_DoctorProfileActivity" />
-
-        <activity android:name=".Patient_RegistrationActivity"
+        <activity
+            android:name=".Patient_RegistrationActivity"
             android:parentActivityName=".LoginActivity" />
-
         <activity android:name=".Patient_BookAppointmentActivity" />
         <activity android:name=".Patient_ShowBookedAppointmentActivity" />
         <activity android:name=".Doctor_ProfileActivity" />
@@ -34,7 +30,12 @@
         <activity android:name=".Doctor_RosterPlanActivity" />
         <activity android:name=".Doctor_EditRosterPlanActivity" />
         <activity android:name=".Doctor_ShowAppointmentActivity" />
-        <activity android:name=".SplashScreenActivity"></activity>
+        <activity android:name=".SplashScreenActivity" />
+        <activity
+            android:name=".Forgot_PasswordActivity"
+            android:parentActivityName=".LoginActivity" />
+        <activity android:name=".Verify_EmailActivity"
+            android:parentActivityName=".Patient_RegistrationActivity"></activity>
     </application>
 
 </manifest>

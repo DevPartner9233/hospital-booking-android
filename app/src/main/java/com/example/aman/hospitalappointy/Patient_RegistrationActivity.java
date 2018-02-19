@@ -161,10 +161,12 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     mRegProgress.dismiss();
-                                    Toast.makeText(Patient_RegistrationActivity.this,"Successfully Account Created",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Patient_RegistrationActivity.this,"Account Successfully Created",Toast.LENGTH_SHORT).show();
 
-                                    Intent main_Intent = new Intent(Patient_RegistrationActivity.this, MainActivity.class);
-                                    startActivity(main_Intent);
+                                    Intent verifyMail_Intent = new Intent(Patient_RegistrationActivity.this, Verify_EmailActivity.class);
+                                    verifyMail_Intent.putExtra("Email",email);
+                                    startActivity(verifyMail_Intent);
+
                                 }
                             });
 

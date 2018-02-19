@@ -37,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Toolbar
         mToolbar = (Toolbar) findViewById(R.id.login_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("LOG IN");
@@ -76,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         mForgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this,"We Are Working On Forgot Password",Toast.LENGTH_LONG).show();
+                Intent forgotPassword_Intent = new Intent(LoginActivity.this,Forgot_PasswordActivity.class);
+                startActivity(forgotPassword_Intent);
             }
         });
         mRegister.setOnClickListener(new View.OnClickListener() {

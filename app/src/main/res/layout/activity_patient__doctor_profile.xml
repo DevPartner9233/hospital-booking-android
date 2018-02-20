@@ -12,20 +12,28 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="220dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
-            android:layout_marginTop="0dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/d_background" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
+        <TextView
+            android:id="@+id/patient_doctor_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Doctor ID : D2322"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_gravity="right"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/doctor_profile_image"
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:src="@mipmap/d1"
@@ -40,6 +48,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/patient_doctor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Doctor Name"
@@ -49,6 +58,7 @@
             android:layout_gravity="center"/>
 
         <TextView
+            android:id="@+id/patient_doctor_specialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization"
@@ -67,17 +77,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/Base.TextAppearance.AppCompat.Large"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Experience"
                     android:textColor="#3949AB"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/patient_doctor_experience"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:text="5 Years" />
             </LinearLayout>
@@ -89,17 +101,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/Base.TextAppearance.AppCompat.Large"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Education"
                     android:textColor="#3949AB"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/patient_doctor_education"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:text="MBBS,MD (MED)" />
             </LinearLayout>
@@ -111,17 +125,19 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    style="@style/Base.TextAppearance.AppCompat.Large"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Contact No."
                     android:textColor="#3949AB"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/patient_doctor_contact"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:text="9137385013" />
             </LinearLayout>

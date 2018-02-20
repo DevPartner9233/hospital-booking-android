@@ -18,6 +18,7 @@ import android.widget.Button;
 public class Fragment_Specialization extends Fragment {
 
     private Button mDocProfile;
+    private Button mPersonal;
 
     public Fragment_Specialization(){
         //Required Empty public constructor otherwise app will crash
@@ -35,6 +36,15 @@ public class Fragment_Specialization extends Fragment {
             public void onClick(View v) {
                 Intent special_Intent = new Intent(rootView.getContext(), Patient_DoctorProfileActivity.class);
                 startActivity(special_Intent);
+            }
+        });
+
+        mPersonal = (Button) rootView.findViewById(R.id.doctor_profile);
+        mPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent my_Intent = new Intent(rootView.getContext(),Doctor_ProfileActivity.class);
+                startActivity(my_Intent);
             }
         });
 

@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 
@@ -36,6 +39,10 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
     private TextInputLayout mPassword;
     private Button mRegister;
 
+    //RadioGroup & RadioButton
+    private RadioGroup mGender;
+
+
     //Firebase Auth
     private FirebaseAuth mAuth;
 
@@ -60,6 +67,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
 
         mRegProgress = new ProgressDialog(this);
 
+
         //User Details
         mName = (TextInputLayout) findViewById(R.id.reg_name_layout);
         mAge = (TextInputLayout) findViewById(R.id.reg_age_layout);
@@ -70,6 +78,8 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         mEmail = (TextInputLayout) findViewById(R.id.reg_email_layout);
         mPassword = (TextInputLayout) findViewById(R.id.reg_password_layout);
         mRegister = (Button) findViewById(R.id.reg_button);
+
+
 
         mRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,20 +92,39 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                 String address = mAddress.getEditText().getText().toString();
                 String email = mEmail.getEditText().getText().toString();
                 String password = mPassword.getEditText().getText().toString();
+                String gender = "";
 
-                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+                //RadioGroup
+                mGender = (RadioGroup) findViewById(R.id.reg_gender_radiogroup);
+                int checkedId = mGender.getCheckedRadioButtonId();
+
+                    if(checkedId == R.id.reg_male_radiobtn){
+                        gender = "Male";
+                    }
+                    else if(checkedId == R.id.reg_female_radiobtn){
+                        gender = "Female";
+                    }
+                    else if(checkedId == R.id.reg_other_radiobtn){
+                        gender = "Other";
+                    }
+                    else {
+                        Toast.makeText(getBaseContext(),"Select Gender",Toast.LENGTH_LONG).show();
+                    }
+
+                if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(name) && !TextUtils.isEmpty(age) && !TextUtils.isEmpty(contactnumber) && !TextUtils.isEmpty(address)){
 
                     mRegProgress.setTitle("Creating Account");
                     mRegProgress.setMessage("Please Wait! We are Processing");
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
 
-                    createAccount(name,age,bloodgroup,contactnumber,address,email,password);
+
+                    createAccount(name,age,gender,bloodgroup,contactnumber,address,email,password);
 
                 }
                 else{
 
-                    Toast.makeText(Patient_RegistrationActivity.this,"Please enter email & password",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Patient_RegistrationActivity.this,"Please fill all field",Toast.LENGTH_LONG).show();
 
                 }
 
@@ -103,7 +132,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void createAccount(final String name, final String age, final String bloodgroup, final String contactnumber, final String address, final String email, final String password) {
+    private void createAccount(final String name, final String age,final String gender, final String bloodgroup, final String contactnumber, final String address, final String email, final String password) {
 
         mAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(Patient_RegistrationActivity.this, new OnCompleteListener<AuthResult>() {
@@ -120,6 +149,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                             HashMap<String,String> userDetails = new HashMap<>();
                             userDetails.put("Name",name);
                             userDetails.put("Age",age);
+                            userDetails.put("Gender",gender);
                             userDetails.put("Blood_Group",bloodgroup);
                             userDetails.put("Contact_N0",contactnumber);
                             userDetails.put("Address",address);
@@ -131,10 +161,12 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     mRegProgress.dismiss();
-                                    Toast.makeText(Patient_RegistrationActivity.this,"Successfully Account Created",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Patient_RegistrationActivity.this,"Account Successfully Created",Toast.LENGTH_SHORT).show();
 
-                                    Intent main_Intent = new Intent(Patient_RegistrationActivity.this, MainActivity.class);
-                                    startActivity(main_Intent);
+                                    Intent verifyMail_Intent = new Intent(Patient_RegistrationActivity.this, Verify_EmailActivity.class);
+                                    verifyMail_Intent.putExtra("Email",email);
+                                    startActivity(verifyMail_Intent);
+
                                 }
                             });
 

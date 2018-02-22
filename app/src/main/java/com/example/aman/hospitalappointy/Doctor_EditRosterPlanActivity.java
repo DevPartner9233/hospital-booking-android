@@ -3,9 +3,13 @@ package com.example.aman.hospitalappointy;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class Doctor_EditRosterPlanActivity extends AppCompatActivity {
 
+    private Button mUpdate;
     private Toolbar mToolbar;
 
     @Override
@@ -19,5 +23,12 @@ public class Doctor_EditRosterPlanActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Edit Roster Plan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        mUpdate = (Button) findViewById(R.id.doctor_editRosterPlan_button);
+        mUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Doctor_EditRosterPlanActivity.this,"Update Clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

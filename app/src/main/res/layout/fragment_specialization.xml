@@ -36,6 +36,22 @@
             android:layout_height="wrap_content"
             android:text="Doctor Personal"/>
 
+        <Button
+            android:id="@+id/doctor_rosterPlan_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Roaster Plan"/>
+        <Button
+            android:id="@+id/doctor_editRoasterPlan_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Roaster Plan"/>
+        <Button
+            android:id="@+id/doctor_editProfile_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"/>
+
 
     </LinearLayout>
 </FrameLayout>

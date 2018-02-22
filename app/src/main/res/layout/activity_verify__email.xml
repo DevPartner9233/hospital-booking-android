@@ -23,7 +23,7 @@
             android:layout_marginTop="30dp"
             android:text="Email"
             android:textStyle="bold|italic"
-            android:textColor="@color/colorAccent"
+            android:textColor="#3949AB"
             android:textSize="30dp"/>
         <TextView
             android:id="@+id/verify_email"
@@ -60,7 +60,7 @@
             android:layout_gravity="center"
             android:text="Click Here To Check"
             android:textStyle="bold"
-            android:textColor="@color/colorAccent"
+            android:textColor="#3949AB"
             style="@style/Widget.AppCompat.Button.Borderless"/>
 
         <TextView

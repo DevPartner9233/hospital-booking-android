@@ -73,10 +73,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mon - Fri Shifts"
+                android:textSize="13dp"
                 android:layout_gravity="left"
                 android:textColor="#FFB300"
-                android:textStyle="bold"
-                style="@style/Base.TextAppearance.AppCompat.Large"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -88,7 +88,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="Morning"
                     android:textStyle="bold"
                     android:textSize="15dp"
@@ -101,8 +101,7 @@
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    card_view:cardCornerRadius="4dp"
-                    card_view:cardUseCompatPadding="true">
+                    card_view:cardCornerRadius="4dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,7 +126,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="Evening"
                     android:textStyle="bold"
                     android:textSize="15dp"
@@ -165,7 +164,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="Night"
                     android:textStyle="bold"
                     android:textSize="15dp"
@@ -203,7 +202,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="Special"
                     android:textStyle="bold"
                     android:textSize="15dp"
@@ -252,6 +251,7 @@
                 android:textStyle="bold"/>
 
         </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

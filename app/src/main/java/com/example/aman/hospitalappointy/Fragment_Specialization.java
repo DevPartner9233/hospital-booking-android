@@ -19,9 +19,6 @@ public class Fragment_Specialization extends Fragment {
 
     private Button mDocProfile;
     private Button mPersonal;
-    private Button mRosterPlan;
-    private Button mEditRosterPlan;
-    private Button mEditProfile;
 
     public Fragment_Specialization(){
         //Required Empty public constructor otherwise app will crash
@@ -35,9 +32,6 @@ public class Fragment_Specialization extends Fragment {
 
         mDocProfile = (Button) rootView.findViewById(R.id.doc_profile);
         mPersonal = (Button) rootView.findViewById(R.id.doctor_profile);
-        mRosterPlan = (Button) rootView.findViewById(R.id.doctor_rosterPlan_btn);
-        mEditRosterPlan = (Button) rootView.findViewById(R.id.doctor_editRoasterPlan_btn);
-        mEditProfile = (Button) rootView.findViewById(R.id.doctor_editProfile_btn);
 
 
         mDocProfile.setOnClickListener(new View.OnClickListener() {
@@ -56,29 +50,6 @@ public class Fragment_Specialization extends Fragment {
             }
         });
 
-        mRosterPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent rosterPlan_Intent = new Intent(rootView.getContext(),Doctor_RosterPlanActivity.class);
-                startActivity(rosterPlan_Intent);
-            }
-        });
-
-        mEditRosterPlan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent editRosterPlan_Intent = new Intent(rootView.getContext(),Doctor_EditRosterPlanActivity.class);
-                startActivity(editRosterPlan_Intent);
-            }
-        });
-
-        mEditProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent editProfile_Intent = new Intent(rootView.getContext(),Doctor_EditProfileActivity.class);
-                startActivity(editProfile_Intent);
-            }
-        });
         return rootView;
     }
 

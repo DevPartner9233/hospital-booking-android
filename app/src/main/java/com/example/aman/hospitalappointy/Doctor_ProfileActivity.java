@@ -1,5 +1,6 @@
 package com.example.aman.hospitalappointy;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -27,7 +28,11 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mShowRosterPlanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
+
+                Intent showRoster_Intent = new Intent(Doctor_ProfileActivity.this,Doctor_RosterPlanActivity.class);
+                startActivity(showRoster_Intent);
+
             }
         });
 
@@ -35,7 +40,10 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
         mEditProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Doctor_ProfileActivity.this,"Edit Profile Clicked",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Doctor_ProfileActivity.this,"Edit Profile Clicked",Toast.LENGTH_SHORT).show();
+
+                Intent editProfile_Intent = new Intent(Doctor_ProfileActivity.this,Doctor_EditProfileActivity.class);
+                startActivity(editProfile_Intent);
             }
         });
     }

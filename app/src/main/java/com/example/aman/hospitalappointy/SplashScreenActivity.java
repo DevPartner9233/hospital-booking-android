@@ -9,23 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    TextView txt;
-    ImageView logo;
-    Animation uptodown, downtoup;
+    private TextView mSplashText;
+    private ImageView mSplashLogo;
+    private Animation uptodown;
+    private Animation downtoup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        logo = (ImageView) findViewById(R.id.logoid);
-        txt = (TextView) findViewById(R.id.textid);
+        mSplashText = (TextView) findViewById(R.id.splash_text);
+        mSplashLogo = (ImageView) findViewById(R.id.splash_logo);
         uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
         downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
 
-        logo.setAnimation(uptodown);
-        txt.setAnimation(downtoup);
 
+        mSplashText.setAnimation(downtoup);
+        mSplashLogo.setAnimation(uptodown);
 
         Thread thread = new Thread(){
             @Override
@@ -38,8 +39,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 }
                 finally
                 {
-                    Intent i= new Intent(SplashScreenActivity.this,searchActivity.class);
-                    startActivity(i);
+                    Intent main_Intent= new Intent(SplashScreenActivity.this,MainActivity.class);
+                    startActivity(main_Intent);
                 }
             }
         };

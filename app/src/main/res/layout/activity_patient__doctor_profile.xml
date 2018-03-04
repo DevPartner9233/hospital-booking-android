@@ -36,7 +36,7 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:src="@mipmap/d1"
+            android:src="@mipmap/doctor_image"
             app:civ_border_color="#27424D"
             app:civ_border_width="2dp" />
 

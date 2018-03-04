@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
+
+    private TextView mUserName;
+    private TextView mUserEmail;
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -81,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Menu menuNav = mNavigationView.getMenu();
             MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
             nav_logOut.setEnabled(false);
+
             Toast.makeText(getBaseContext(),"User is Not Logged In ",Toast.LENGTH_LONG).show();
 
         }else {

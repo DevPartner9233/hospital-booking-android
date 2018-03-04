@@ -62,7 +62,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         // Toolbar
         mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle("Registration");
+        getSupportActionBar().setTitle("Patient Registration");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mRegProgress = new ProgressDialog(this);

@@ -3,13 +3,23 @@ package com.example.aman.hospitalappointy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 /**
  * Created by Aman on 14-Feb-18.
@@ -19,6 +29,10 @@ public class Fragment_Specialization extends Fragment {
 
     private Button mDocProfile;
     private Button mPersonal;
+
+    private RecyclerView mRecylerView;
+
+    private DatabaseReference mDatabase;
 
     public Fragment_Specialization(){
         //Required Empty public constructor otherwise app will crash
@@ -50,8 +64,62 @@ public class Fragment_Specialization extends Fragment {
             }
         });
 
+        mRecylerView = (RecyclerView) rootView.findViewById(R.id.specialization_recyclerView);
+        mRecylerView.setHasFixedSize(true);
+        mRecylerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+
         return rootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Details");
+
+        Query query = mDatabase.orderByChild("Name");
+
+        FirebaseRecyclerOptions<DoctorList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<DoctorList>()
+                .setQuery(query, DoctorList.class)
+                .build();
+
+        FirebaseRecyclerAdapter<DoctorList,SpecializationViewHolder> firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<DoctorList, SpecializationViewHolder>(firebaseRecyclerOptions) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull SpecializationViewHolder holder, int position, @NonNull DoctorList model) {
+
+                        holder.setName(model.getName());
+                    }
+
+                    @Override
+                    public SpecializationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                        View view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.doctorlist_item_layout, parent, false);
+
+                        return new SpecializationViewHolder(view);
+                    }
+                };
+        mRecylerView.setAdapter(firebaseRecyclerAdapter);
+        firebaseRecyclerAdapter.startListening();
+
+    }
+
+    public class SpecializationViewHolder extends RecyclerView.ViewHolder {
+
+        View mView;
+
+        public SpecializationViewHolder(View itemView) {
+            super(itemView);
+
+            mView = itemView;
+        }
+
+
+        public void setName(String name) {
+
+            TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
+            userName.setText(name);
+        }
+    }
 }

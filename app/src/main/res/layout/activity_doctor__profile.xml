@@ -43,7 +43,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -65,7 +65,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
 
@@ -82,7 +82,7 @@
                     android:text="Experience"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/doctor_experience"
@@ -106,7 +106,7 @@
                     android:text="Education"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/doctor_education"
@@ -130,7 +130,7 @@
                     android:text="Email"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/doctor_email"
@@ -154,7 +154,7 @@
                     android:text="DOB"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/doctor_dob"
@@ -178,7 +178,7 @@
                     android:text="Contact No."
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/doctor_contact"
@@ -202,7 +202,7 @@
                     android:text="Address"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
                     android:id="@+id/doctor_address"

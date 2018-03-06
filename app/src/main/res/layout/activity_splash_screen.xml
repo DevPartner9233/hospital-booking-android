@@ -20,14 +20,13 @@
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/splash_logo" />
 
-        <TextView
-            android:id="@+id/splash_text"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/splash_logo1"
+            android:layout_width="197dp"
             android:layout_height="wrap_content"
-            android:text="Hospital Apppinty"
-            android:textColor="@color/colorPrimary"
-            android:textSize="36dp"
-            android:textStyle="bold" />
+            app:srcCompat="@mipmap/splash_logo1" />
+
+
 
     </LinearLayout>
 </LinearLayout>

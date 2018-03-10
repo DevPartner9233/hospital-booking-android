@@ -3,12 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Hospital Appointy.iml" filepath="$PROJECT_DIR$/.idea/Hospital Appointy.iml" />
-      <module fileurl="file://F:\Minor_Project\HospitalAppointy\.idea\HospitalAppointy.iml" filepath="F:\Minor_Project\HospitalAppointy\.idea\HospitalAppointy.iml" />
-      <module fileurl="file://G:\Android Apps\HospitalAppointy\HospitalAppointy.iml" filepath="G:\Android Apps\HospitalAppointy\HospitalAppointy.iml" />
       <module fileurl="file://G:\aman\Android\Hospital_Appointy\Hospital Appointy\HospitalAppointy.iml" filepath="G:\aman\Android\Hospital_Appointy\Hospital Appointy\HospitalAppointy.iml" />
+      <module fileurl="file://G:\Android Apps\HospitalAppointy\HospitalAppointy.iml" filepath="G:\Android Apps\HospitalAppointy\HospitalAppointy.iml" />
+      <module fileurl="file://F:\Minor_Project\HospitalAppointy\.idea\HospitalAppointy.iml" filepath="F:\Minor_Project\HospitalAppointy\.idea\HospitalAppointy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://G:\Android Apps\HospitalAppointy\app\app.iml" filepath="G:\Android Apps\HospitalAppointy\app\app.iml" />
-      <module fileurl="file://G:\aman\Android\Hospital_Appointy\Hospital Appointy\app\app.iml" filepath="G:\aman\Android\Hospital_Appointy\Hospital Appointy\app\app.iml" />
     </modules>
   </component>
 </project>

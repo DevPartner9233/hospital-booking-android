@@ -113,9 +113,15 @@ public class Fragment_Specialization extends Fragment {
         FirebaseRecyclerAdapter<DoctorList,SpecializationViewHolder> firebaseRecyclerAdapter =
                 new FirebaseRecyclerAdapter<DoctorList, SpecializationViewHolder>(firebaseRecyclerOptions) {
                     @Override
-                    protected void onBindViewHolder(@NonNull SpecializationViewHolder holder, int position, @NonNull DoctorList model) {
+                    protected void onBindViewHolder(@NonNull SpecializationViewHolder holder, int position, @NonNull final DoctorList model) {
 
                         holder.setName(model.getName());
+                        holder.mView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
 
                     @Override

@@ -9,24 +9,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/search_by_doctor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:drawableRight="@mipmap/search"
+                android:id="@+id/doctor_searchtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Search By Doctor"
+                android:inputType="textPersonName"
+                android:maxLength="20" />
+
+        </android.support.design.widget.TextInputLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/doctor_recyclerView"
-            android:layout_width="0dp"
-            android:layout_weight="10"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-
-        <xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller
-            android:id="@+id/fast_scroller"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-
-            recyclerviewfastscroller:rfs_backgroundColor="#ffffff"
-            recyclerviewfastscroller:rfs_textColor="#000000"
-            />
 
     </LinearLayout>
 

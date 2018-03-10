@@ -13,10 +13,6 @@
         android:orientation="vertical">
 
 
-        <DatePicker
-            android:id="@+id/datePicker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </FrameLayout>

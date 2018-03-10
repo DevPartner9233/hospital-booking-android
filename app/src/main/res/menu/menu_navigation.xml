@@ -5,13 +5,17 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_profile"
             android:icon="@mipmap/ic_home_black_24dp"
-            android:title="Home" />
+            android:title="Profile" />
         <item
             android:id="@+id/nav_showAppointment"
             android:icon="@mipmap/icon"
             android:title="Show Appointment"/>
+        <item
+            android:id="@+id/nav_bookedAppointment"
+            android:icon="@mipmap/icon"
+            android:title="Booked Appointment"/>
         <item
             android:id="@+id/nav_login"
             android:icon="@mipmap/login"

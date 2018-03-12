@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        Menu menuNav = mNavigationView.getMenu();
+        final Menu menuNav = mNavigationView.getMenu();
 
         // Check if user is signed in  or not
         if(currentUser == null){
@@ -95,19 +95,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
             nav_logOut.setVisible(false);
 
-            Toast.makeText(getBaseContext(),"User is Not Logged In ",Toast.LENGTH_LONG).show();
-
+            Toast.makeText(getBaseContext(),"Your Account is not Logged In ",Toast.LENGTH_LONG).show();
         }else {
 
-            Toast.makeText(getBaseContext(),"User is Logged In ",Toast.LENGTH_LONG).show();
-
-            //Retrieve Name and Email of Current User and Set it into Navigation Header
             String uid = currentUser.getUid();
             mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(uid);
             mUserDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
+                    String role = dataSnapshot.child("Role").getValue().toString();
                     String name = dataSnapshot.child("Name").getValue().toString();
                     String email = dataSnapshot.child("Email").getValue().toString();
 
@@ -117,6 +113,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     mUserName.setText(name);
                     mUserEmail.setText(email);
 
+                    //  Toast.makeText(getBaseContext(),role,Toast.LENGTH_LONG).show();
+                    if(role.equals("Patient")){
+                        //Toast.makeText(getBaseContext(),"Patient",Toast.LENGTH_LONG).show();
+
+                        MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
+                        nav_profile.setVisible(false);
+
+                        MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
+                        nav_ShowAppointment.setVisible(false);
+                    }else {
+                        Toast.makeText(getBaseContext(),"Something wrong",Toast.LENGTH_LONG).show();
+
+                        MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
+                        nav_profile.setVisible(true);
+
+                        MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
+                        nav_ShowAppointment.setVisible(true);
+
+                        MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
+                        nav_BookedAppointment.setVisible(false);
+                    }
                 }
 
                 @Override
@@ -124,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 }
             });
-
 
             //Setting Visibility of Navigation item (Login)
            // Menu menuNav = mNavigationView.getMenu();
@@ -136,6 +152,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             nav_logOut.setVisible(true);
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

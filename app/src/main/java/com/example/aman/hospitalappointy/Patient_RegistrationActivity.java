@@ -156,6 +156,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                             userDetails.put("User_ID",uid);
                             userDetails.put("Email",email);
                             userDetails.put("Password",password);
+                            userDetails.put("Role","Patient");
 
                             mUserDetails.setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

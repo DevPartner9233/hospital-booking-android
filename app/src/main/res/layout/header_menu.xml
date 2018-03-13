@@ -48,7 +48,6 @@
                 android:layout_gravity="center"
                 />
 
-
         </LinearLayout>
 
     </LinearLayout>

@@ -95,10 +95,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
             nav_logOut.setVisible(false);
 
+            MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
+            nav_profile.setVisible(false);
+
+            MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
+            nav_ShowAppointment.setVisible(false);
+
+            MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
+            nav_BookedAppointment.setVisible(false);
+
             Toast.makeText(getBaseContext(),"Your Account is not Logged In ",Toast.LENGTH_LONG).show();
         }else {
 
+            String type = getIntent().getStringExtra("Login Type");
+           // Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+
+            if(type.equals("Patient")){
+                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+            }else if(type.equals("Doctor")){
+                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+            }else {
+
+            }
+
+
+
             String uid = currentUser.getUid();
+
             mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(uid);
             mUserDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -192,11 +215,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
 
+                onStart();
+
                 //Enabling Navigation item (Login) which is disabled during onStart
                 Menu menuNav = mNavigationView.getMenu();
                 MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
                 nav_logIn.setVisible(true);
-                //nav_logIn.setVisible(false);
+                //nav_logIn.setEnabled(false);
 
                 Toast.makeText(getBaseContext(),"Successfully Logged Out",Toast.LENGTH_LONG).show();
 

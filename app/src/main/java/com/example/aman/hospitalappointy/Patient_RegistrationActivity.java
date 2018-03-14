@@ -1,5 +1,6 @@
 package com.example.aman.hospitalappointy;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -10,9 +11,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -164,9 +167,40 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                                     mRegProgress.dismiss();
                                     Toast.makeText(Patient_RegistrationActivity.this,"Account Successfully Created",Toast.LENGTH_SHORT).show();
 
-                                    Intent verifyMail_Intent = new Intent(Patient_RegistrationActivity.this, Verify_EmailActivity.class);
-                                    verifyMail_Intent.putExtra("Email",email);
-                                    startActivity(verifyMail_Intent);
+                                    AlertDialog.Builder mBuiler = new AlertDialog.Builder(Patient_RegistrationActivity.this);
+                                    View mView = getLayoutInflater().inflate(R.layout.verify_email, null);
+
+                                    TextView userEmail = (TextView) mView.findViewById(R.id.verify_email);
+                                    final TextView sentVerication = (TextView) mView.findViewById(R.id.verify_email_sent);
+                                    Button verifyEmail = (Button) mView.findViewById(R.id.verify_button);
+                                    Button continuebutton = (Button) mView.findViewById(R.id.verify_continue);
+
+                                    userEmail.setText(email);
+
+                                    verifyEmail.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            sentVerication.setText("We have sent Email to "+email);
+                                        }
+                                    });
+
+                                    continuebutton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent main_Intent = new Intent(Patient_RegistrationActivity.this,MainActivity.class);
+                                            startActivity(main_Intent);
+                                        }
+                                    });
+
+
+                                    mBuiler.setView(mView);
+                                    AlertDialog dialog = mBuiler.create();
+                                    dialog.setCanceledOnTouchOutside(false);
+                                    dialog.show();
+
+//                                    Intent verifyMail_Intent = new Intent(Patient_RegistrationActivity.this, Verify_EmailActivity.class);
+//                                    verifyMail_Intent.putExtra("Email",email);
+//                                    startActivity(verifyMail_Intent);
 
                                 }
                             });

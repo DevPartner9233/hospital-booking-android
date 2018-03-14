@@ -47,8 +47,6 @@
         <activity android:name=".Forgot_PasswordActivity"
             android:parentActivityName=".LoginActivity" />
 
-        <activity android:name=".Verify_EmailActivity"
-            android:parentActivityName=".Patient_RegistrationActivity"></activity>
     </application>
 
 </manifest>

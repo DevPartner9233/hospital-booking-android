@@ -21,7 +21,6 @@
             android:src="@mipmap/d_background" />
 
         <TextView
-            android:id="@+id/patient_doctor_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -31,7 +30,6 @@
             android:layout_gravity="right"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/doctor_profile_image"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -48,7 +46,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/patient_doctor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Doctor Name"
@@ -58,7 +55,6 @@
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/patient_doctor_specialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization"
@@ -86,7 +82,6 @@
                     android:textSize="20dp"/>
 
                 <TextView
-                    android:id="@+id/patient_doctor_experience"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -110,7 +105,6 @@
                     android:textSize="20dp"/>
 
                 <TextView
-                    android:id="@+id/patient_doctor_education"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -134,7 +128,6 @@
                     android:textSize="20dp"/>
 
                 <TextView
-                    android:id="@+id/patient_doctor_contact"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"

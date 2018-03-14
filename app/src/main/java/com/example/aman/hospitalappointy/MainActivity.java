@@ -110,13 +110,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String type = getIntent().getStringExtra("Login Type");
            // Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
 
-            if(type.equals("Patient")){
-                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
-            }else if(type.equals("Doctor")){
-                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
-            }else {
-
-            }
+//            if(type.equals("Patient")){
+//                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+//            }else if(type.equals("Doctor")){
+//                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+//            }else {
+//
+//            }
 
 
 
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
                         nav_ShowAppointment.setVisible(false);
                     }else {
-                        Toast.makeText(getBaseContext(),"Something wrong",Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getBaseContext(),"Something wrong",Toast.LENGTH_LONG).show();
 
                         MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
                         nav_profile.setVisible(true);

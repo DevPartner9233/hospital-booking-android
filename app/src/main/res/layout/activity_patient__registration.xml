@@ -26,6 +26,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/name"
             android:hint="Name"
             android:inputType="textPersonName"
             android:maxLength="20"/>
@@ -41,6 +42,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/age"
             android:hint="Age"
             android:inputType="number"
             android:maxLength="3"/>
@@ -94,6 +96,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/drop"
             android:hint="Blood Group (Optional)"
             android:inputType="textPersonName"
             android:maxLength="10"/>
@@ -109,6 +112,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/telephone"
             android:hint="Contact Number"
             android:inputType="number"
             android:maxLength="10"/>
@@ -124,6 +128,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/address"
             android:hint="Address"
             android:inputType="textPersonName"
             android:maxLength="30"/>
@@ -139,6 +144,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/email"
             android:hint="Email"
             android:inputType="textEmailAddress"/>
     </android.support.design.widget.TextInputLayout>
@@ -153,6 +159,7 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/lock"
             android:hint="Password"
             android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>

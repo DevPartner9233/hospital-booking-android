@@ -30,7 +30,6 @@
             android:layout_gravity="right"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/doctor_editProfile_profile_image"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center"
@@ -40,7 +39,6 @@
             app:civ_border_width="2dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/doctor_editProfile_edit_image"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -66,7 +64,6 @@
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/doctor_specialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization"
@@ -94,7 +91,6 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_experience"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="match_parent"
@@ -102,7 +98,6 @@
                     android:text="5 Years" />
 
                 <ImageView
-                    android:id="@+id/edit_doctor_experiance"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -125,7 +120,6 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_education"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -133,7 +127,6 @@
                     android:text="MBBS,MD (MED)" />
 
                 <ImageView
-                    android:id="@+id/edit_doctor_education"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -156,7 +149,6 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_email"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -164,7 +156,6 @@
                     android:text="abfj@gmail.com" />
 
                 <ImageView
-                    android:id="@+id/edit_doctor_email"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -187,7 +178,6 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_dob"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -195,7 +185,6 @@
                     android:text="25-08-1995" />
 
                 <ImageView
-                    android:id="@+id/edit_doctor_dob"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -218,7 +207,6 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_contact"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -226,7 +214,6 @@
                     android:text="9137385013" />
 
                 <ImageView
-                    android:id="@+id/edit_doctor_contact"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -249,7 +236,6 @@
                     android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_address"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -257,7 +243,6 @@
                     android:text="Bhopal" />
 
                 <ImageView
-                    android:id="@+id/edit_doctor_address"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -265,7 +250,6 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/doctor_editProfile_update_button"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginLeft="30dp"

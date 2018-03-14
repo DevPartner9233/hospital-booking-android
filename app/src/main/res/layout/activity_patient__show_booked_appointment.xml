@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.aman.hospitalappointy.Patient_ShowBookedAppointmentActivity">
 
-    <include android:id="@+id/patient_showBookedAppointment_toolbar"
-        layout="@layout/app_bar_layout" />
+    <include layout="@layout/app_bar_layout" />
 
 </LinearLayout>

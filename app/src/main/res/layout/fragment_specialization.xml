@@ -21,7 +21,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Search By Specialization"
                 android:inputType="textPersonName"
-                android:maxLength="20" />
+                android:maxLength="20"
+                android:focusable="false"/>
         </android.support.design.widget.TextInputLayout>
 
         <Button

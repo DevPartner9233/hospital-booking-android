@@ -18,10 +18,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,12 +37,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
 
+    private TextView mUserName;
+    private TextView mUserEmail;
+
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private Fragment_SectionPagerAdapter mFragment_SectionPagerAdapter;
 
     //Firebase Auth
     private FirebaseAuth mAuth;
+    private DatabaseReference mUserDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,30 +83,99 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void onStart() {
         super.onStart();
-        // Check if user is signed in  or not
+
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if(currentUser == null){
-            //Disable Navigation item (Log Out)
-            Menu menuNav = mNavigationView.getMenu();
-            MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
-            nav_logOut.setEnabled(false);
-            Toast.makeText(getBaseContext(),"User is Not Logged In ",Toast.LENGTH_LONG).show();
+        final Menu menuNav = mNavigationView.getMenu();
 
+        // Check if user is signed in  or not
+        if(currentUser == null){
+            //Setting Visibility of Navigation item (Log Out)
+            //Menu menuNav = mNavigationView.getMenu();
+            MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
+            nav_logOut.setVisible(false);
+
+            MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
+            nav_profile.setVisible(false);
+
+            MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
+            nav_ShowAppointment.setVisible(false);
+
+            MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
+            nav_BookedAppointment.setVisible(false);
+
+            Toast.makeText(getBaseContext(),"Your Account is not Logged In ",Toast.LENGTH_LONG).show();
         }else {
 
-            //Disable Navigation item (Login)
-            Menu menuNav = mNavigationView.getMenu();
+            String type = getIntent().getStringExtra("Login Type");
+           // Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+
+//            if(type.equals("Patient")){
+//                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+//            }else if(type.equals("Doctor")){
+//                Toast.makeText(getBaseContext(),type,Toast.LENGTH_LONG).show();
+//            }else {
+//
+//            }
+
+
+
+            String uid = currentUser.getUid();
+
+            mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(uid);
+            mUserDatabase.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    String role = dataSnapshot.child("Role").getValue().toString();
+                    String name = dataSnapshot.child("Name").getValue().toString();
+                    String email = dataSnapshot.child("Email").getValue().toString();
+
+                    View view = mNavigationView.getHeaderView(0);
+                    mUserName = (TextView) view.findViewById(R.id.header_userName);
+                    mUserEmail = (TextView) view.findViewById(R.id.header_userEmail);
+                    mUserName.setText(name);
+                    mUserEmail.setText(email);
+
+                    //  Toast.makeText(getBaseContext(),role,Toast.LENGTH_LONG).show();
+                    if(role.equals("Patient")){
+                        //Toast.makeText(getBaseContext(),"Patient",Toast.LENGTH_LONG).show();
+
+                        MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
+                        nav_profile.setVisible(false);
+
+                        MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
+                        nav_ShowAppointment.setVisible(false);
+                    }else {
+                        //Toast.makeText(getBaseContext(),"Something wrong",Toast.LENGTH_LONG).show();
+
+                        MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
+                        nav_profile.setVisible(true);
+
+                        MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
+                        nav_ShowAppointment.setVisible(true);
+
+                        MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
+                        nav_BookedAppointment.setVisible(false);
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            //Setting Visibility of Navigation item (Login)
+           // Menu menuNav = mNavigationView.getMenu();
             MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
-            nav_logIn.setEnabled(false);
+            nav_logIn.setVisible(false);
 
-            Toast.makeText(getBaseContext(),"User is Logged In ",Toast.LENGTH_LONG).show();
-
-            //Enable Navigation item (Log Out)
+            //Setting Visibility of Navigation item (Log Out)
             MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
-            nav_logOut.setEnabled(true);
+            nav_logOut.setVisible(true);
         }
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -113,12 +192,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.nav_home:
-                Toast.makeText(getBaseContext(),"Home Clicked",Toast.LENGTH_LONG).show();
+            case R.id.nav_profile:
+                //Toast.makeText(getBaseContext(),"Profile Clicked",Toast.LENGTH_LONG).show();
+                Intent profile_Intent = new Intent(MainActivity.this,Doctor_ProfileActivity.class);
+                startActivity(profile_Intent);
+
                 break;
 
             case R.id.nav_showAppointment:
                 Toast.makeText(getBaseContext(),"Show Appointment Clicked",Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.nav_bookedAppointment:
+                Toast.makeText(getBaseContext(),"Booked Appointment Clicked",Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.nav_login:
@@ -129,16 +215,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_logout:
                 FirebaseAuth.getInstance().signOut();
 
+                onStart();
+
                 //Enabling Navigation item (Login) which is disabled during onStart
                 Menu menuNav = mNavigationView.getMenu();
                 MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
-                nav_logIn.setEnabled(true);
+                nav_logIn.setVisible(true);
+                //nav_logIn.setEnabled(false);
 
                 Toast.makeText(getBaseContext(),"Successfully Logged Out",Toast.LENGTH_LONG).show();
 
                //Disabling Navigation item (Log Out)
                 MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
-                nav_logOut.setEnabled(false);
+                nav_logOut.setVisible(false);
                 break;
 
             case R.id.nav_helps:

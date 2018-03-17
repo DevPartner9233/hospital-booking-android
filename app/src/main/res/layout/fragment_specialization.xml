@@ -17,25 +17,39 @@
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TextInputEditText
+                android:drawableRight="@mipmap/search"
+                android:id="@+id/special_searchtxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search By Specialization"
                 android:inputType="textPersonName"
-                android:maxLength="20"
-                android:focusable="false"/>
+                android:maxLength="20" />
+
         </android.support.design.widget.TextInputLayout>
 
-        <Button
-            android:id="@+id/doc_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Doctor Profile"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/doc_profile"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Doctor Profile"/>
 
-        <Button
-            android:id="@+id/doctor_profile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Doctor Personal"/>
+            <Button
+                android:id="@+id/search"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="Search"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/specialization_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
 
 
     </LinearLayout>

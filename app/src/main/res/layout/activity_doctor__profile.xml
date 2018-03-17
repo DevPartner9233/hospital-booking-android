@@ -30,12 +30,11 @@
             android:layout_gravity="right"/>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:src="@mipmap/d2"
+            android:src="@mipmap/doctor_image1"
             app:civ_border_color="#27424D"
             app:civ_border_width="2dp" />
 
@@ -43,7 +42,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
@@ -57,7 +56,6 @@
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/doctor_specialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization"
@@ -65,7 +63,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_margin="20dp"
             android:orientation="vertical">
 
@@ -82,10 +80,9 @@
                     android:text="Experience"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_experience"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -106,10 +103,9 @@
                     android:text="Education"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_education"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -130,10 +126,9 @@
                     android:text="Email"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_email"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -154,10 +149,9 @@
                     android:text="DOB"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_dob"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -178,10 +172,9 @@
                     android:text="Contact No."
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_contact"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -202,10 +195,9 @@
                     android:text="Address"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
-                    android:textSize="20dp"/>
+                    android:textSize="15dp"/>
 
                 <TextView
-                    android:id="@+id/doctor_address"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"

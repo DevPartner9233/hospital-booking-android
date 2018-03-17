@@ -9,33 +9,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+
+        <activity android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".Patient_DoctorProfileActivity" />
+
+        <activity android:name=".Patient_RegistrationActivity"
+            android:parentActivityName=".LoginActivity" />
+
+        <activity android:name=".Patient_BookAppointmentActivity" />
+        <activity android:name=".Patient_ShowBookedAppointmentActivity" />
+
+        <activity android:name=".Doctor_ProfileActivity"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".Doctor_EditProfileActivity"
+            android:parentActivityName=".Doctor_ProfileActivity"/>
+
+        <activity android:name=".Doctor_RosterPlanActivity"
+            android:parentActivityName=".Doctor_ProfileActivity"/>
+
+        <activity android:name=".Doctor_EditRosterPlanActivity"
+            android:parentActivityName=".Doctor_RosterPlanActivity"/>
+
+        <activity android:name=".Doctor_ShowAppointmentActivity" />
+
+        <activity android:name=".SplashScreenActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".Patient_DoctorProfileActivity" />
-        <activity
-            android:name=".Patient_RegistrationActivity"
+
+        <activity android:name=".Forgot_PasswordActivity"
             android:parentActivityName=".LoginActivity" />
-        <activity android:name=".Patient_BookAppointmentActivity" />
-        <activity android:name=".Patient_ShowBookedAppointmentActivity" />
-        <activity android:name=".Doctor_ProfileActivity" />
-        <activity android:name=".Doctor_EditProfileActivity" />
-        <activity android:name=".Doctor_RosterPlanActivity" />
-        <activity android:name=".Doctor_EditRosterPlanActivity" />
-        <activity android:name=".Doctor_ShowAppointmentActivity" />
-        <activity android:name=".SplashScreenActivity" />
-        <activity
-            android:name=".Forgot_PasswordActivity"
-            android:parentActivityName=".LoginActivity" />
-        <activity android:name=".Verify_EmailActivity"
-            android:parentActivityName=".Patient_RegistrationActivity"></activity>
+
     </application>
 
 </manifest>

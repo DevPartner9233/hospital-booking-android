@@ -50,7 +50,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     //Database Reference
-    private DatabaseReference mUserDetails;
+    private DatabaseReference mUserDetails = FirebaseDatabase.getInstance().getReference();
 
     private Toolbar mToolbar;
     private ProgressDialog mRegProgress;
@@ -147,7 +147,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                             String uid = currentUser.getUid();
 
-                            mUserDetails = FirebaseDatabase.getInstance().getReference().child("Patient_Details").child(uid);
+                            mUserDetails.child("User_Type").child(uid).child("Type").setValue("Patient");
 
                             HashMap<String,String> userDetails = new HashMap<>();
                             userDetails.put("Name",name);
@@ -156,51 +156,16 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                             userDetails.put("Blood_Group",bloodgroup);
                             userDetails.put("Contact_N0",contactnumber);
                             userDetails.put("Address",address);
-                            userDetails.put("User_ID",uid);
                             userDetails.put("Email",email);
                             userDetails.put("Password",password);
-                            userDetails.put("Role","Patient");
 
-                            mUserDetails.setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            mUserDetails.child("Patient_Details").child(uid).setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     mRegProgress.dismiss();
                                     Toast.makeText(Patient_RegistrationActivity.this,"Account Successfully Created",Toast.LENGTH_SHORT).show();
 
-                                    AlertDialog.Builder mBuiler = new AlertDialog.Builder(Patient_RegistrationActivity.this);
-                                    View mView = getLayoutInflater().inflate(R.layout.verify_email, null);
-
-                                    TextView userEmail = (TextView) mView.findViewById(R.id.verify_email);
-                                    final TextView sentVerication = (TextView) mView.findViewById(R.id.verify_email_sent);
-                                    Button verifyEmail = (Button) mView.findViewById(R.id.verify_button);
-                                    Button continuebutton = (Button) mView.findViewById(R.id.verify_continue);
-
-                                    userEmail.setText(email);
-
-                                    verifyEmail.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            sentVerication.setText("We have sent Email to "+email);
-                                        }
-                                    });
-
-                                    continuebutton.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent main_Intent = new Intent(Patient_RegistrationActivity.this,MainActivity.class);
-                                            startActivity(main_Intent);
-                                        }
-                                    });
-
-
-                                    mBuiler.setView(mView);
-                                    AlertDialog dialog = mBuiler.create();
-                                    dialog.setCanceledOnTouchOutside(false);
-                                    dialog.show();
-
-//                                    Intent verifyMail_Intent = new Intent(Patient_RegistrationActivity.this, Verify_EmailActivity.class);
-//                                    verifyMail_Intent.putExtra("Email",email);
-//                                    startActivity(verifyMail_Intent);
+                                    verifyEmail(email);
 
                                 }
                             });
@@ -215,6 +180,40 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private void verifyEmail(final String email) {
+
+        AlertDialog.Builder mBuiler = new AlertDialog.Builder(Patient_RegistrationActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.verify_email, null);
+
+        TextView userEmail = (TextView) mView.findViewById(R.id.verify_email);
+        final TextView sentVerication = (TextView) mView.findViewById(R.id.verify_email_sent);
+        Button verifyEmail = (Button) mView.findViewById(R.id.verify_button);
+        Button continuebutton = (Button) mView.findViewById(R.id.verify_continue);
+
+        userEmail.setText(email);
+
+        verifyEmail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sentVerication.setText("We have sent Email to "+email);
+            }
+        });
+
+        continuebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent main_Intent = new Intent(Patient_RegistrationActivity.this,MainActivity.class);
+                startActivity(main_Intent);
+            }
+        });
+
+
+        mBuiler.setView(mView);
+        AlertDialog dialog = mBuiler.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
 

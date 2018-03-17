@@ -28,9 +28,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button mForgot;
     private Button mRegister;
 
-    private Spinner spinner;
-    private String type[] = {"Patient","Doctor"};
-    private String mLoginType = "";
 
     //Firebase Auth
     private FirebaseAuth mAuth;
@@ -51,38 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mLoginProgress = new ProgressDialog(this);
-
-        spinner = findViewById(R.id.login_type);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,type);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String itemSelected = adapterView.getSelectedItem().toString();
-               // Toast.makeText(getBaseContext(),itemSelected,Toast.LENGTH_SHORT).show();
-
-                if(itemSelected.equals("Patient")){
-
-                    mLoginType = itemSelected;
-
-                }
-                else if(itemSelected.equals("Doctor")){
-                    mLoginType = itemSelected;
-                }
-                else {
-                    Toast.makeText(getBaseContext(),"Nothing Selected",Toast.LENGTH_SHORT).show();
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
 
         mEmail = (TextInputLayout) findViewById(R.id.login_email_layout);
         mPassword = (TextInputLayout) findViewById(R.id.login_password_layout);
@@ -140,9 +105,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             mLoginProgress.dismiss();
                             Intent main_Intent = new Intent(LoginActivity.this, MainActivity.class);
-                            main_Intent.putExtra("Login Type",mLoginType);
                             startActivity(main_Intent);
-                            Toast.makeText(LoginActivity.this,"Successfully Logged IN",Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this,"Successfully Logged IN",Toast.LENGTH_LONG).show();
                         }
                         else {
 

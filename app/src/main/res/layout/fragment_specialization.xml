@@ -36,13 +36,6 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Doctor Profile"/>
-
-            <Button
-                android:id="@+id/search"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:text="Search"/>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

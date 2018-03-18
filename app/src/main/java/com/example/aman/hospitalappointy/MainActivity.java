@@ -121,11 +121,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_ShowAppointment.setVisible(false);
         nav_BookedAppointment.setVisible(false);
 
-        mUserDatabase.child("User_Type").child(mAuth.getCurrentUser().getUid().toString()).addValueEventListener(new ValueEventListener() {
+        final String uid = mAuth.getUid().toString();
+
+        mUserDatabase.child("User_Type").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Type = dataSnapshot.child("Type").getValue().toString();
-                String uid = mAuth.getUid().toString();
 
                 if(Type.equals("Patient")){
                     nav_BookedAppointment.setVisible(true);
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     });
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Not Vailed User", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, uid+"Not Vailed User"+Type, Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -213,10 +214,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.nav_showAppointment:
                 Toast.makeText(getBaseContext(),"Show Appointment Clicked",Toast.LENGTH_LONG).show();
+                Intent showAppointment_Intent = new Intent(MainActivity.this,Doctor_ShowAppointmentActivity.class);
+                startActivity(showAppointment_Intent);
                 break;
 
             case R.id.nav_bookedAppointment:
                 Toast.makeText(getBaseContext(),"Booked Appointment Clicked",Toast.LENGTH_LONG).show();
+                Intent bookedAppointment_Intent = new Intent(MainActivity.this,Patient_ShowBookedAppointmentActivity.class);
+                startActivity(bookedAppointment_Intent);
                 break;
 
             case R.id.nav_login:

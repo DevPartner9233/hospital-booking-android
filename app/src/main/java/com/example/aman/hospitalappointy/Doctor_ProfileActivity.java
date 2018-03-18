@@ -60,21 +60,5 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
             }
         });
 
-
-        //Get the Value from DataBase and set it into Doctor_Profile TextView
-        mDoctorDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor_Details").child("qH47alG0gSXa1FSPVogoQ0XYpJI3");
-        mDoctorDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("Name").getValue().toString();
-
-                mName.setText(name);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 }

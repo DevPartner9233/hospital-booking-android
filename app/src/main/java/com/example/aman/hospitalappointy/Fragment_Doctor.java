@@ -1,5 +1,6 @@
 package com.example.aman.hospitalappointy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,22 +11,16 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
-
-import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScroller;
 
 /**
  * Created by Aman on 14-Feb-18.
@@ -89,7 +84,7 @@ public class Fragment_Doctor extends Fragment {
 
         String search = mSearch.getEditText().getText().toString();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Details");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor_Details");
 
         Query query = mDatabase.orderByChild("Name").startAt(search).endAt(search +"\uf8ff");
 
@@ -100,13 +95,28 @@ public class Fragment_Doctor extends Fragment {
         FirebaseRecyclerAdapter<DoctorList, DoctorListViewHolder> firebaseRecyclerAdapter =
                 new FirebaseRecyclerAdapter<DoctorList, DoctorListViewHolder>(firebaseRecyclerOptions) {
             @Override
-            protected void onBindViewHolder(@NonNull DoctorListViewHolder holder, int position, @NonNull final DoctorList model) {
+            protected void onBindViewHolder(@NonNull final DoctorListViewHolder holder, int position, @NonNull final DoctorList model) {
 
                 holder.setName(model.getName());
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
+
+                        String name = model.getName().toString();
+                        String specialization = model.getSpecialization().toString();
+                        String contact = model.getContact().toString();
+                        String experience = model.getExperiance().toString();
+                        String education = model.getEducation().toString();
+
+
+                        Intent intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);
+                        intent.putExtra("Name",name);
+                        intent.putExtra("Specialization",specialization);
+                        intent.putExtra("Contact",contact);
+                        intent.putExtra("Experiance",experience);
+                        intent.putExtra("Education",education);
+                        startActivity(intent);
                     }
                 });
 

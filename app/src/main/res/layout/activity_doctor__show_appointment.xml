@@ -4,8 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.aman.hospitalappointy.Doctor_ShowAppointmentActivity">
 
     <include layout="@layout/app_bar_layout" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Show Appointments of Today's"/>
 
 </LinearLayout>

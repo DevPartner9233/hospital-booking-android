@@ -14,7 +14,8 @@
         <activity android:name=".LoginActivity"
             android:parentActivityName=".MainActivity" />
 
-        <activity android:name=".Patient_DoctorProfileActivity" />
+        <activity android:name=".Patient_DoctorProfileActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".Patient_RegistrationActivity"
             android:parentActivityName=".LoginActivity" />

@@ -47,7 +47,7 @@
             android:background="@drawable/button_background"
             android:text="Verify Email"
             android:textColor="#ffffff"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView

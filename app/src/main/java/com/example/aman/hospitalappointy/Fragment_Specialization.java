@@ -51,7 +51,6 @@ public class Fragment_Specialization extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_specialization,container,false);
 
         mDocProfile = (Button) rootView.findViewById(R.id.doc_profile);
-        mSearchbtn = (Button) rootView.findViewById(R.id.search);
         mSearch = (TextInputLayout) rootView.findViewById(R.id.search_by_specialization);
         searchtext = (EditText) rootView.findViewById(R.id.special_searchtxt);
 
@@ -75,18 +74,10 @@ public class Fragment_Specialization extends Fragment {
         mDocProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent special_Intent = new Intent(rootView.getContext(), Patient_DoctorProfileActivity.class);
-                startActivity(special_Intent);
+                Intent doctorProfile_Intent = new Intent(rootView.getContext(),Doctor_ProfileActivity.class);
+                startActivity(doctorProfile_Intent);
             }
         });
-        mSearchbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(rootView.getContext(),"sdgbk",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
 
         mRecylerView = (RecyclerView) rootView.findViewById(R.id.specialization_recyclerView);
         mRecylerView.setHasFixedSize(true);

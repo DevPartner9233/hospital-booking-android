@@ -46,6 +46,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/patient_doctorProfile_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Doctor Name"
@@ -55,6 +56,7 @@
             android:layout_gravity="center"/>
 
         <TextView
+            android:id="@+id/patient_doctorProfile_specialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization"
@@ -82,6 +84,7 @@
                     android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/patient_doctorProfile_experiance"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -105,6 +108,7 @@
                     android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/patient_doctorProfile_education"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"
@@ -128,6 +132,7 @@
                     android:textSize="20dp"/>
 
                 <TextView
+                    android:id="@+id/patient_doctorProfile_contact"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:paddingTop="5dp"

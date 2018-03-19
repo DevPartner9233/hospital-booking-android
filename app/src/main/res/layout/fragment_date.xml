@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_date"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.aman.hospitalappointy.Fragment_Doctor"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.aman.hospitalappointy.Fragment_Doctor">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,6 +13,110 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#75c643">
+
+            <TextView
+                android:id="@+id/selected_date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Selected Date"
+                android:textStyle="bold|italic"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/select_date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Select Date"
+                android:textColor="#ffffff"
+                android:textStyle="bold|italic"
+                android:textSize="20dp"
+                android:gravity="center"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                card_view:cardBackgroundColor="#17a8ec"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:shadowColor="#000000"
+                    android:text="08:00 AM"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                card_view:cardBackgroundColor="#17a8ec"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:shadowColor="#000000"
+                    android:text="03:00 PM"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                card_view:cardBackgroundColor="#17a8ec"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardElevation="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:shadowColor="#000000"
+                    android:text="03:00 PM"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

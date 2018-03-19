@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
 
-    private TextView mUserName;
-    private TextView mUserEmail;
-
     private String Type = "";
 
     private TabLayout mTabLayout;
@@ -178,6 +175,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
                 else {
                     Toast.makeText(MainActivity.this, uid+"Not Vailed User"+Type, Toast.LENGTH_SHORT).show();
+                    FirebaseAuth.getInstance().signOut();
+                    onStart();
                 }
             }
 

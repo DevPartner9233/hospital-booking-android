@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     });
                 }
                 else {
-                    Toast.makeText(MainActivity.this, uid+"Not Vailed User"+Type, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "You are not authorized for this facility", Toast.LENGTH_SHORT).show();
                     FirebaseAuth.getInstance().signOut();
                     onStart();
                 }

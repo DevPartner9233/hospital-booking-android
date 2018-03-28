@@ -104,18 +104,18 @@ public class Fragment_Doctor extends Fragment {
                         //Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
 
                         String name = model.getName().toString();
-                        String specialization = model.getSpecialization().toString();
+//                        String specialization = model.getSpecialization().toString();
                         String contact = model.getContact().toString();
                         String experience = model.getExperiance().toString();
-                        String education = model.getEducation().toString();
+//                        String education = model.getEducation().toString();
 
 
                         Intent intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);
                         intent.putExtra("Name",name);
-                        intent.putExtra("Specialization",specialization);
+//                        intent.putExtra("Specialization",specialization);
                         intent.putExtra("Contact",contact);
                         intent.putExtra("Experiance",experience);
-                        intent.putExtra("Education",education);
+//                        intent.putExtra("Education",education);
                         startActivity(intent);
                     }
                 });

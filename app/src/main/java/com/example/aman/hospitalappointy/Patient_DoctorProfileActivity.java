@@ -1,13 +1,11 @@
 package com.example.aman.hospitalappointy;
 
 import android.app.DatePickerDialog;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -63,11 +61,6 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
                         String date = dayOfMonth +"/"+ (month+1) +"/"+ year;
                         Toast.makeText(Patient_DoctorProfileActivity.this, date , Toast.LENGTH_SHORT).show();
 
-//                        Fragment_Date fragment = new Fragment_Date();
-//                        android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.fragment_date,fragment);
-//                        transaction.commit();
-
                         Intent intent = new Intent(Patient_DoctorProfileActivity.this, Patient_BookAppointmentActivity.class);
                         intent.putExtra("Date",date);
                         startActivity(intent);
@@ -84,14 +77,14 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
         super.onStart();
 
         String name = getIntent().getStringExtra("Name").toString();
-        String education = getIntent().getStringExtra("Education").toString();
-        String specialization = getIntent().getStringExtra("Specialization").toString();
+//        String education = getIntent().getStringExtra("Education").toString();
+//        String specialization = getIntent().getStringExtra("Specialization").toString();
         String experience = getIntent().getStringExtra("Experiance").toString();
         String contact = getIntent().getStringExtra("Contact").toString();
 
             mName.setText(name);
-            mEducation.setText(education);
-            mSpecialization.setText(specialization);
+//            mEducation.setText(education);
+//            mSpecialization.setText(specialization);
             mExperience.setText(experience);
             mContactNo.setText(contact);
     }

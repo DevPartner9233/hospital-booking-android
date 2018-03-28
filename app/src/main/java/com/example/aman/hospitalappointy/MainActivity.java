@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
     private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,10 +80,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
+
     public void onStart() {
         super.onStart();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
+        //Toast.makeText(this, currentUser.getUid().toString(), Toast.LENGTH_SHORT).show();
 
         Menu menuNav = mNavigationView.getMenu();
         final MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
@@ -123,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mUserDatabase.child("User_Type").child(uid).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Type = dataSnapshot.child("Type").getValue().toString();
+                Type = (String) dataSnapshot.child("Type").getValue();
 
                 if(Type.equals("Patient")){
                     nav_BookedAppointment.setVisible(true);

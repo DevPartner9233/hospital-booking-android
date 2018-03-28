@@ -7,7 +7,8 @@
     android:orientation="vertical"
     tools:context="com.example.aman.hospitalappointy.Patient_BookAppointmentActivity">
 
-    <include layout="@layout/app_bar_layout" />
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/patient_bookAppointment"/>
 
     <TextView
         android:layout_width="match_parent"

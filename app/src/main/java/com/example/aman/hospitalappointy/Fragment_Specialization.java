@@ -31,8 +31,6 @@ import com.google.firebase.database.Query;
 
 public class Fragment_Specialization extends Fragment {
 
-    private Button mDocProfile;
-    private Button mSearchbtn;
     private TextInputLayout mSearch;
     private EditText searchtext;
 
@@ -50,7 +48,6 @@ public class Fragment_Specialization extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.fragment_specialization,container,false);
 
-        mDocProfile = (Button) rootView.findViewById(R.id.doc_profile);
         mSearch = (TextInputLayout) rootView.findViewById(R.id.search_by_specialization);
         searchtext = (EditText) rootView.findViewById(R.id.special_searchtxt);
 
@@ -68,14 +65,6 @@ public class Fragment_Specialization extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 onStart();
-            }
-        });
-
-        mDocProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent doctorProfile_Intent = new Intent(rootView.getContext(),Doctor_ProfileActivity.class);
-                startActivity(doctorProfile_Intent);
             }
         });
 

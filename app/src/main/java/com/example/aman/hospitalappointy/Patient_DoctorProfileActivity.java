@@ -58,15 +58,20 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        String date = dayOfMonth +"/"+ (month+1) +"/"+ year;
+                        String userId = getIntent().getStringExtra("UserId").toString();
+
+                        String date = dayOfMonth +"-"+ (month+1) +"-"+ year;
                         Toast.makeText(Patient_DoctorProfileActivity.this, date , Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(Patient_DoctorProfileActivity.this, Patient_BookAppointmentActivity.class);
                         intent.putExtra("Date",date);
+                        intent.putExtra("DoctorUserId",userId);
                         startActivity(intent);
                     }
                 },day,month,year);
                 datePickerDialog.updateDate(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() + (3 * 60 * 60 * 1000));
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis() + (15 * 24 * 60 * 60 * 1000));
                 datePickerDialog.show();
             }
         });

@@ -140,7 +140,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="03:00 PM - 11:00PM"
+                        android:text="03:00 PM - 09:30PM"
                         android:textColor="#3949AB"
                         android:textStyle="bold"
                         android:layout_gravity="center"

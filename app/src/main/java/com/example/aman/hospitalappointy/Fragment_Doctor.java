@@ -1,6 +1,7 @@
 package com.example.aman.hospitalappointy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -78,6 +79,7 @@ public class Fragment_Doctor extends Fragment {
         return rootView;
     }
 
+
     @Override
     public void onStart() {
         super.onStart();
@@ -98,6 +100,7 @@ public class Fragment_Doctor extends Fragment {
             protected void onBindViewHolder(@NonNull final DoctorListViewHolder holder, int position, @NonNull final DoctorList model) {
 
                 holder.setName(model.getName());
+                final String uid = getRef(position).getKey().toString();
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -116,6 +119,7 @@ public class Fragment_Doctor extends Fragment {
                         intent.putExtra("Contact",contact);
                         intent.putExtra("Experiance",experience);
 //                        intent.putExtra("Education",education);
+                        intent.putExtra("UserId",uid);
                         startActivity(intent);
                     }
                 });
@@ -136,6 +140,7 @@ public class Fragment_Doctor extends Fragment {
         firebaseRecyclerAdapter.startListening();
 
     }
+
 
     public class DoctorListViewHolder extends RecyclerView.ViewHolder{
 

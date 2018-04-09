@@ -32,7 +32,6 @@ public class Fragment_Doctor extends Fragment {
     private EditText mSearchText;
     private TextInputLayout mSearch;
     private RecyclerView mDoctorList;
-    //private VerticalRecyclerViewFastScroller mFastScroller;
 
     private DatabaseReference mDatabase;
 

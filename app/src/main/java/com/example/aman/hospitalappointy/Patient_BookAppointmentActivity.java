@@ -88,11 +88,11 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
                                         String doctorName = dataSnapshot.child("Name").getValue().toString();
 
                                         HashMap<String,String> details = new HashMap<>();
-                                        details.put("Doctor_Name",doctorName);
+                                        details.put("Doctor_ID",getIntent().getStringExtra("DoctorUserId"));
                                         details.put("Date",date);
                                         details.put("Time",time);
 
-                                        mPatientDatabase.child("Booked_Appointments").child(mAuth.getCurrentUser().getUid()).setValue(details);
+                                        mPatientDatabase.child("Booked_Appointments").child(mAuth.getCurrentUser().getUid()).push().setValue(details);
                                     }
 
                                     @Override

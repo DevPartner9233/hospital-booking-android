@@ -21,7 +21,8 @@
             android:parentActivityName=".LoginActivity" />
 
         <activity android:name=".Patient_BookAppointmentActivity" />
-        <activity android:name=".Patient_ShowBookedAppointmentActivity" />
+        <activity android:name=".Patient_ShowBookedAppointmentActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".Doctor_ProfileActivity"
             android:parentActivityName=".MainActivity"/>
@@ -35,7 +36,8 @@
         <activity android:name=".Doctor_EditRosterPlanActivity"
             android:parentActivityName=".Doctor_RosterPlanActivity"/>
 
-        <activity android:name=".Doctor_ShowAppointmentActivity" />
+        <activity android:name=".Doctor_ShowAppointmentActivity"
+            android:parentActivityName=".MainActivity"/>
 
         <activity android:name=".SplashScreenActivity" >
             <intent-filter>

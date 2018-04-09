@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:text="Doctor Name"
         android:layout_marginLeft="30dp"
-        android:textColor="@color/skyBlue"
+        android:textColor="@color/colorPrimaryDark"
         style="@style/Base.TextAppearance.AppCompat.Large" />
 
 </LinearLayout>

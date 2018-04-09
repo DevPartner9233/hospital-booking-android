@@ -18,7 +18,7 @@ public class DoctorList{
 
     }
 
-    public DoctorList(String name, String email, String address, String city, String eduction, String spcialization,String contact, String experiance) {
+    public DoctorList(String name, String email, String address, String eduction, String spcialization,String contact, String experiance) {
         this.Name = name;
         this.Email = email;
         this.Address = address;

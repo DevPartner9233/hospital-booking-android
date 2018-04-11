@@ -54,7 +54,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/doctor_name"
+            android:id="@+id/edit_doctor_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Doctor Name"
@@ -64,7 +64,7 @@
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/doctor_editProfile_specialization"
+            android:id="@+id/edit_doctor_specialization"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Specialization"
@@ -93,6 +93,7 @@
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/edit_doctor_experiance"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="match_parent"
@@ -100,10 +101,12 @@
                     android:text="5 Years" />
 
                 <ImageView
+                    android:id="@+id/edit_experiance"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/edit_text"/>
+                    android:src="@mipmap/edit_text"
+                    android:onClick="update"/>
             </LinearLayout>
 
             <LinearLayout
@@ -123,6 +126,7 @@
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/edit_doctor_education"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -130,10 +134,12 @@
                     android:text="MBBS,MD (MED)" />
 
                 <ImageView
+                    android:id="@+id/edit_education"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/edit_text"/>
+                    android:src="@mipmap/edit_text"
+                    android:onClick="update"/>
             </LinearLayout>
 
             <LinearLayout
@@ -153,6 +159,7 @@
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/edit_doctor_email"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -163,7 +170,8 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/edit_text"/>
+                    android:src="@mipmap/edit_text"
+                    android:visibility="invisible"/>
             </LinearLayout>
 
             <LinearLayout
@@ -177,23 +185,26 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:layout_weight="2"
-                    android:text="DOB"
+                    android:text="Age"
                     android:textColor="#3949AB"
                     android:textStyle="bold"
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/edit_doctor_age"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:layout_weight="2"
-                    android:text="25-08-1995" />
+                    android:text="45" />
 
                 <ImageView
+                    android:id="@+id/edit_age"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/edit_text"/>
+                    android:src="@mipmap/edit_text"
+                    android:onClick="update"/>
             </LinearLayout>
 
             <LinearLayout
@@ -213,6 +224,7 @@
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/edit_doctor_contact"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -220,10 +232,12 @@
                     android:text="9137385013" />
 
                 <ImageView
+                    android:id="@+id/edit_contact"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/edit_text"/>
+                    android:src="@mipmap/edit_text"
+                    android:onClick="update"/>
             </LinearLayout>
 
             <LinearLayout
@@ -243,6 +257,7 @@
                     android:textSize="15dp"/>
 
                 <TextView
+                    android:id="@+id/edit_doctor_address"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -250,10 +265,12 @@
                     android:text="Bhopal" />
 
                 <ImageView
+                    android:id="@+id/edit_address"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
-                    android:src="@mipmap/edit_text"/>
+                    android:src="@mipmap/edit_text"
+                    android:onClick="update"/>
             </LinearLayout>
 
             <Button

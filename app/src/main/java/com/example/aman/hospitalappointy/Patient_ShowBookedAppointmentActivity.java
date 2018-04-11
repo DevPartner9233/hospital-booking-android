@@ -128,16 +128,16 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Cancel Appointment Clicked=="+key, Toast.LENGTH_SHORT).show();
 
-//                    mDatabase.child("Booked_Appointment").child(mAuth.getCurrentUser().getUid()).child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            if(task.isSuccessful()){
-//                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-//                            }else {
-//                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Not Deleted", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                    });
+                    mDatabase.child("Booked_Appointment").child(mAuth.getCurrentUser().getUid()).child(key).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Not Deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
                 }
             });

@@ -25,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.security.Key;
+
 /**
  * Created by Aman on 14-Feb-18.
  */
@@ -36,7 +38,7 @@ public class Fragment_Specialization extends Fragment {
 
     private RecyclerView mRecylerView;
 
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     public Fragment_Specialization(){
         //Required Empty public constructor otherwise app will crash
@@ -82,9 +84,7 @@ public class Fragment_Specialization extends Fragment {
 
         String search = mSearch.getEditText().getText().toString();
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Patient_Details");
-
-        Query query = mDatabase.orderByChild("Name").startAt(search).endAt(search +"\uf8ff");
+        Query query = mDatabase.child("Specialization");
 
         FirebaseRecyclerOptions<DoctorList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<DoctorList>()
                 .setQuery(query, DoctorList.class)
@@ -93,15 +93,17 @@ public class Fragment_Specialization extends Fragment {
         FirebaseRecyclerAdapter<DoctorList,SpecializationViewHolder> firebaseRecyclerAdapter =
                 new FirebaseRecyclerAdapter<DoctorList, SpecializationViewHolder>(firebaseRecyclerOptions) {
                     @Override
-                    protected void onBindViewHolder(@NonNull SpecializationViewHolder holder, int position, @NonNull final DoctorList model) {
+                    protected void onBindViewHolder(@NonNull SpecializationViewHolder holder, final int position, @NonNull final DoctorList model) {
 
-                        holder.setName(model.getName());
+                        final String Special = getRef(position).getKey().toString();
+                        holder.setSpecialization(Special);
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
+                            public void onClick(View v) {
+                                Toast.makeText(getContext(), position+" == "+Special, Toast.LENGTH_SHORT).show();
                             }
                         });
+
                     }
 
                     @Override
@@ -128,11 +130,9 @@ public class Fragment_Specialization extends Fragment {
             mView = itemView;
         }
 
-
-        public void setName(String name) {
-
+        public void setSpecialization(String special) {
             TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
-            userName.setText(name);
+            userName.setText(special);
         }
     }
 }

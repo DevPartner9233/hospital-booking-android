@@ -76,7 +76,8 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:text="Experience"
                     android:textColor="#3949AB"
@@ -87,6 +88,7 @@
                     android:id="@+id/patient_doctorProfile_experiance"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:text="5 Years" />
@@ -100,7 +102,8 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:text="Education"
                     android:textColor="#3949AB"
@@ -111,6 +114,7 @@
                     android:id="@+id/patient_doctorProfile_education"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:text="MBBS,MD (MED)" />
@@ -124,7 +128,8 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
                     android:layout_weight="1"
                     android:text="Contact No."
                     android:textColor="#3949AB"
@@ -135,9 +140,36 @@
                     android:id="@+id/patient_doctorProfile_contact"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:gravity="center"
                     android:paddingTop="5dp"
                     android:layout_weight="1"
                     android:text="9137385013" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="Shift"
+                    android:textColor="#3949AB"
+                    android:textStyle="bold"
+                    android:textSize="20dp"/>
+
+                <TextView
+                    android:id="@+id/patient_doctorProfile_shift"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingTop="5dp"
+                    android:layout_weight="1"
+                    android:text="---" />
             </LinearLayout>
 
             <Button

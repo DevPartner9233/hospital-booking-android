@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,11 +31,13 @@ import java.util.HashMap;
 
 public class Patient_BookAppointmentActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private String date, time = "";
+    private String date, time = "", shift;
     private TextView selectDate;
     private Toolbar mToolbar;
     private Button mConfirm;
     private  int flagChecked=0;
+
+    private LinearLayout morningLayout, eveningLayout;
 
     private Calendar calendar;
     private DatePickerDialog datePickerDialog;
@@ -53,6 +56,18 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Book Appointment");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        morningLayout = (LinearLayout) findViewById(R.id.morning_shift);
+        eveningLayout = (LinearLayout) findViewById(R.id.evening_shift);
+        shift = getIntent().getStringExtra("Shift").toString();
+
+        if(shift.equals("Morning")){
+            morningLayout.setVisibility(View.VISIBLE);
+            eveningLayout.setVisibility(View.GONE);
+        }else {
+            eveningLayout.setVisibility(View.VISIBLE);
+            morningLayout.setVisibility(View.GONE);
+        }
 
         mConfirm = (Button) findViewById(R.id.confirm_appointment);
         mConfirm.setOnClickListener(new View.OnClickListener() {

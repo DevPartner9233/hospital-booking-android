@@ -15,11 +15,8 @@ import java.util.Calendar;
 
 public class Patient_DoctorProfileActivity extends AppCompatActivity {
 
-    private TextView mName;
-    private TextView mEducation;
-    private TextView mSpecialization;
-    private TextView mExperience;
-    private TextView mContactNo;
+    private TextView mName, mEducation, mSpecialization, mExperience, mContactNo, mShift;
+    private String shift;
 
     private Button mBookAppointmentBtn;
     private Toolbar mToolbar;
@@ -43,6 +40,7 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
         mEducation = (TextView) findViewById(R.id.patient_doctorProfile_education);
         mExperience = (TextView) findViewById(R.id.patient_doctorProfile_experiance);
         mContactNo = (TextView) findViewById(R.id.patient_doctorProfile_contact);
+        mShift = (TextView) findViewById(R.id.patient_doctorProfile_shift);
 
         mBookAppointmentBtn = (Button) findViewById(R.id.book_appointment_button);
         mBookAppointmentBtn.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +64,7 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
                         Intent intent = new Intent(Patient_DoctorProfileActivity.this, Patient_BookAppointmentActivity.class);
                         intent.putExtra("Date",date);
                         intent.putExtra("DoctorUserId",userId);
+                        intent.putExtra("Shift",shift);
                         startActivity(intent);
                     }
                 },day,month,year);
@@ -82,15 +81,17 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
         super.onStart();
 
         String name = getIntent().getStringExtra("Name").toString();
-//        String education = getIntent().getStringExtra("Education").toString();
-//        String specialization = getIntent().getStringExtra("Specialization").toString();
+        String education = getIntent().getStringExtra("Education").toString();
+        String specialization = getIntent().getStringExtra("Specialization").toString();
         String experience = getIntent().getStringExtra("Experiance").toString();
         String contact = getIntent().getStringExtra("Contact").toString();
+        shift = getIntent().getStringExtra("Shift").toString();
 
-            mName.setText(name);
-//            mEducation.setText(education);
-//            mSpecialization.setText(specialization);
-            mExperience.setText(experience);
-            mContactNo.setText(contact);
+        mName.setText(name);
+        mEducation.setText(education);
+        mSpecialization.setText(specialization);
+        mExperience.setText(experience);
+        mContactNo.setText(contact);
+        mShift.setText(shift);
     }
 }

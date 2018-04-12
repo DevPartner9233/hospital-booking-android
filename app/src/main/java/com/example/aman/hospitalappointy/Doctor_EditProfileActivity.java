@@ -1,24 +1,29 @@
 package com.example.aman.hospitalappointy;
 
 import android.content.DialogInterface;
-import android.support.design.widget.TextInputEditText;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class Doctor_EditProfileActivity extends AppCompatActivity {
 
     private TextView mName, mEmail, mSpecialization, mExperiance, mAge, mContact, mAddress, mEducation;
     private Toolbar mToolbar;
 
-    private String name,specialization,experiance,education,email,age,contact,address;
+    private String name,specialization,experiance,education,email,age,contact,address,update;
 
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("Doctor_Details");
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +54,6 @@ public class Doctor_EditProfileActivity extends AppCompatActivity {
         contact = getIntent().getStringExtra("Contact").toString();
         address = getIntent().getStringExtra("Address").toString();
 
-
         mName.setText(name);
         mSpecialization.setText(specialization);
         mExperiance.setText(experiance);
@@ -63,26 +67,30 @@ public class Doctor_EditProfileActivity extends AppCompatActivity {
     public void update(View view){
 
         switch (view.getId()){
+
+            case R.id.edit_name:
+                alertDialog(name,"Name");
+                break;
+
             case R.id.edit_experiance:
-                Toast.makeText(this, "Experience", Toast.LENGTH_SHORT).show();
-                alertDialog(experiance);
+                alertDialog(experiance,"Experience");
                 break;
 
             case R.id.edit_education:
-                Toast.makeText(this, "Education", Toast.LENGTH_SHORT).show();
-                alertDialog(education);
+                alertDialog(education,"Education");
                 break;
             case R.id.edit_address:
-                Toast.makeText(this, "Address", Toast.LENGTH_SHORT).show();
-                alertDialog(address);
+                alertDialog(address,"Address");
                 break;
             case R.id.edit_age:
-                Toast.makeText(this, "age", Toast.LENGTH_SHORT).show();
-                alertDialog(age);
+                alertDialog(age,"Age");
                 break;
             case R.id.edit_contact:
-                Toast.makeText(this, "contact", Toast.LENGTH_SHORT).show();
-                alertDialog(contact);
+                alertDialog(contact,"Contact");
+                break;
+
+            case R.id.final_update:
+                updateDoctorProfile();
                 break;
 
             default:
@@ -91,39 +99,83 @@ public class Doctor_EditProfileActivity extends AppCompatActivity {
 
     }
 
-    private void alertDialog(String text){
+    private void updateDoctorProfile() {
+
+        String currentUser = mAuth.getCurrentUser().getUid().toString();
+
+       mDatabase.child(currentUser).child("Name").setValue(name);
+       mDatabase.child(currentUser).child("Experiance").setValue(experiance);
+       mDatabase.child(currentUser).child("Education").setValue(education);
+       mDatabase.child(currentUser).child("Address").setValue(address);
+       mDatabase.child(currentUser).child("Contact").setValue(contact);
+       mDatabase.child(currentUser).child("Age").setValue(age);
+
+       startActivity(new Intent(Doctor_EditProfileActivity.this,Doctor_ProfileActivity.class));
+
+
+
+    }
+
+    private void alertDialog(String text, final String detail){
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         View view = getLayoutInflater().inflate(R.layout.udate_dialog, null);
 
-        EditText text1 = (EditText) view.findViewById(R.id.editText);
-        Button updateButton = (Button) view.findViewById(R.id.update_button);
-        Button cancelButton = (Button) view.findViewById(R.id.cancel_button);
 
-        text1.setText(text, TextView.BufferType.EDITABLE);
+        TextView textView = (TextView) view.findViewById(R.id.update_textView);
+        final EditText editText = (EditText) view.findViewById(R.id.editText);
 
-
-
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Doctor_EditProfileActivity.this, "", Toast.LENGTH_SHORT).show();
-            }
-        });
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Doctor_EditProfileActivity.this, "Cancel", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-//        updateDetail.setText(text, TextView.BufferType.EDITABLE);
+        textView.setText(detail);
+        editText.setText(text, TextView.BufferType.EDITABLE);
 
         builder.setView(view);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                update = editText.getText().toString();
+
+                if(detail.equals("Name")){
+                    mName.setText(update);
+                    name = mName.getText().toString();
+                }
+                else if(detail.equals("Experience")){
+                    mExperiance.setText(update);
+                    experiance = mExperiance.getText().toString();
+                }
+                else if(detail.equals("Education")){
+                    mEducation.setText(update);
+                    education = mEducation.getText().toString();
+                }
+                else if(detail.equals("Address")){
+                    mAddress.setText(update);
+                    address = mAddress.getText().toString();
+                }
+                else if(detail.equals("Age")){
+                    mAge.setText(update);
+                    age = mAge.getText().toString();
+                }
+                else if(detail.equals("Contact")){
+                    mContact.setText(update);
+                    contact = mContact.getText().toString();
+                }
+                else {
+
+                }
+
+            }
+        });
 
         AlertDialog alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
-
     }
+
 }

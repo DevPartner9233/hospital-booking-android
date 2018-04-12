@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -106,18 +107,20 @@ public class Fragment_Doctor extends Fragment {
                         //Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
 
                         String name = model.getName().toString();
-//                        String specialization = model.getSpecialization().toString();
+                        String specialization = model.getSpecialization().toString();
                         String contact = model.getContact().toString();
                         String experience = model.getExperiance().toString();
-//                        String education = model.getEducation().toString();
+                        String education = model.getEducation().toString();
+                        String shift = model.getShift().toString();
 
 
                         Intent intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);
                         intent.putExtra("Name",name);
-//                        intent.putExtra("Specialization",specialization);
+                        intent.putExtra("Specialization",specialization);
                         intent.putExtra("Contact",contact);
                         intent.putExtra("Experiance",experience);
-//                        intent.putExtra("Education",education);
+                        intent.putExtra("Education",education);
+                        intent.putExtra("Shift",shift);
                         intent.putExtra("UserId",uid);
                         startActivity(intent);
                     }

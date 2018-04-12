@@ -13,12 +13,13 @@ public class DoctorList{
     private String Experiance;
     private String Specialization;
     private String Contact;
+    private String Shift;
 
     public DoctorList(){
 
     }
 
-    public DoctorList(String name, String email, String address, String eduction, String spcialization,String contact, String experiance) {
+    public DoctorList(String name, String email, String address, String eduction, String spcialization,String contact, String experiance, String shift) {
         this.Name = name;
         this.Email = email;
         this.Address = address;
@@ -26,6 +27,7 @@ public class DoctorList{
         this.Specialization = spcialization;
         this.Contact = contact;
         this.Experiance = experiance;
+        this.Shift = shift;
     }
 
     public String getName() {
@@ -83,5 +85,13 @@ public class DoctorList{
 
     public void setContact(String contact) {
         this.Contact = contact;
+    }
+
+    public String getShift() {
+        return Shift;
+    }
+
+    public void setShift(String shift) {
+        this.Shift = shift;
     }
 }

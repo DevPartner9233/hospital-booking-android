@@ -1,6 +1,8 @@
 package com.example.aman.hospitalappointy;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,14 +18,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.security.Key;
 
@@ -86,21 +93,27 @@ public class Fragment_Specialization extends Fragment {
 
         Query query = mDatabase.child("Specialization");
 
-        FirebaseRecyclerOptions<DoctorList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<DoctorList>()
-                .setQuery(query, DoctorList.class)
+        FirebaseRecyclerOptions<BookedAppointmentList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<BookedAppointmentList>()
+                .setQuery(query, BookedAppointmentList.class)
                 .build();
 
-        FirebaseRecyclerAdapter<DoctorList,SpecializationViewHolder> firebaseRecyclerAdapter =
-                new FirebaseRecyclerAdapter<DoctorList, SpecializationViewHolder>(firebaseRecyclerOptions) {
+        FirebaseRecyclerAdapter<BookedAppointmentList,SpecializationViewHolder> firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<BookedAppointmentList, SpecializationViewHolder>(firebaseRecyclerOptions) {
                     @Override
-                    protected void onBindViewHolder(@NonNull SpecializationViewHolder holder, final int position, @NonNull final DoctorList model) {
+                    protected void onBindViewHolder(@NonNull final SpecializationViewHolder holder, final int position, @NonNull final BookedAppointmentList model) {
 
+//                        final String doctorID = model.getDoctor_ID().toString();
                         final String Special = getRef(position).getKey().toString();
                         holder.setSpecialization(Special);
+
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Toast.makeText(getContext(), position+" == "+Special, Toast.LENGTH_SHORT).show();
+
+                                Toast.makeText(getContext(), position+" = "+Special+" DoctorID = ", Toast.LENGTH_SHORT).show();
+
+                                alertDialog(Special);
+
                             }
                         });
 
@@ -119,6 +132,96 @@ public class Fragment_Specialization extends Fragment {
         firebaseRecyclerAdapter.startListening();
 
     }
+
+    private void alertDialog(String special) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View view = getLayoutInflater().inflate(R.layout.doctor_list_dialog, null);
+
+        RecyclerView alertRecyclerView = view.findViewById(R.id.doctor_dialog);
+        alertRecyclerView.setHasFixedSize(true);
+        alertRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        builder.setView(view);
+
+        Query query = mDatabase.child("Specialization").child(special);
+
+        FirebaseRecyclerOptions<BookedAppointmentList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<BookedAppointmentList>()
+                .setQuery(query, BookedAppointmentList.class)
+                .build();
+
+        FirebaseRecyclerAdapter<BookedAppointmentList, SpecializationVH> firebaseRecyclerAdapter =
+                new FirebaseRecyclerAdapter<BookedAppointmentList, SpecializationVH>(firebaseRecyclerOptions) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull final SpecializationVH holder, int position, @NonNull final BookedAppointmentList model) {
+
+                        final String doctorID = model.getDoctor_ID().toString();
+
+                        mDatabase.child("Doctor_Details").child(doctorID).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                final String doctorName = dataSnapshot.child("Name").getValue().toString();
+                                final String specialization = dataSnapshot.child("Specialization").getValue().toString();
+                                final String contact = dataSnapshot.child("Contact").getValue().toString();
+                                final String experience = dataSnapshot.child("Experiance").getValue().toString();
+                                final String education = dataSnapshot.child("Education").getValue().toString();
+                                final String shift = dataSnapshot.child("Shift").getValue().toString();
+
+                                holder.setDoctorName(doctorName);
+                                holder.mView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);
+                                        intent.putExtra("Name",doctorName);
+                                        intent.putExtra("Specialization",specialization);
+                                        intent.putExtra("Contact",contact);
+                                        intent.putExtra("Experiance",experience);
+                                        intent.putExtra("Education",education);
+                                        intent.putExtra("Shift",shift);
+                                        intent.putExtra("UserId",doctorID);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public SpecializationVH onCreateViewHolder(ViewGroup parent, int viewType) {
+
+                        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.doctorlist_item_layout, null);
+                        return new SpecializationVH(mView);
+                    }
+                };
+        alertRecyclerView.setAdapter(firebaseRecyclerAdapter);
+        firebaseRecyclerAdapter.startListening();
+
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.show();
+    }
+
+    public class SpecializationVH extends RecyclerView.ViewHolder {
+
+        View mView;
+
+        public SpecializationVH(View itemView) {
+            super(itemView);
+
+            mView = itemView;
+        }
+
+        public void setDoctorName(String doctorName) {
+            TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
+            userName.setText(doctorName);
+        }
+    }
+
 
     public class SpecializationViewHolder extends RecyclerView.ViewHolder {
 

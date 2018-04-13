@@ -174,85 +174,85 @@ public class Doctor_ShowAppointmentActivity extends AppCompatActivity {
 
     private void alertDialog(final String patientID, final String slot) {
 
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(Doctor_ShowAppointmentActivity.this);
-            builder.setIcon(R.drawable.question).setTitle("Cancel Appointment");
-            builder.setMessage("Are You Sure! Want to Cancel Appointment");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+        count = 0;
+        AlertDialog.Builder builder = new AlertDialog.Builder(Doctor_ShowAppointmentActivity.this);
+        builder.setIcon(R.drawable.question).setTitle("Cancel Appointment");
+        builder.setMessage("Are You Sure! Want to Cancel Appointment");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
 
 //                    Toast.makeText(Doctor_ShowAppointmentActivity.this, userID+" = UserID "+date+" = Date "+slot+" = Slot", Toast.LENGTH_SHORT).show();
 
 
-                    Query query = mDatabase.child("Booked_Appointments").child(patientID).orderByChild("Date");
-                    query.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Query query = mDatabase.child("Booked_Appointments").child(patientID).orderByChild("Date");
+                query.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                            String myParentNode = dataSnapshot.getKey();
+                        String myParentNode = dataSnapshot.getKey();
 
-                            for (DataSnapshot child: dataSnapshot.getChildren())
-                            {
-                                String key = child.getKey().toString();
-                                String value = child.getValue().toString();
+                        for (DataSnapshot child: dataSnapshot.getChildren())
+                        {
+                            String key = child.getKey().toString();
+                            String value = child.getValue().toString();
 
-                                if(value.equals(userID)){
+                            if(value.equals(userID)){
 //                                    Toast.makeText(Doctor_ShowAppointmentActivity.this, key+" - "+value, Toast.LENGTH_SHORT).show();
-                                    count = count + 1;
+                                count = count + 1;
 
-                                }
-                                if(value.equals(date)){
-//                                    Toast.makeText(Doctor_ShowAppointmentActivity.this, key+" - "+value, Toast.LENGTH_SHORT).show();
-                                    count = count + 1;
-
-                                }
                             }
-                            if(count == 2){
+                            if(value.equals(date)){
+//                                    Toast.makeText(Doctor_ShowAppointmentActivity.this, key+" - "+value, Toast.LENGTH_SHORT).show();
+                                count = count + 1;
+
+                            }
+                        }
+                        if(count == 2){
 //                                Toast.makeText(Doctor_ShowAppointmentActivity.this, Integer.toString(count), Toast.LENGTH_SHORT).show();
-                                mDatabase.child("Appointment").child(userID).child(date).child(slot).removeValue();
-                                mDatabase.child("Booked_Appointments").child(patientID).child(myParentNode).removeValue();
-
-                            }
+                            mDatabase.child("Appointment").child(userID).child(date).child(slot).removeValue();
+                            mDatabase.child("Booked_Appointments").child(patientID).child(myParentNode).removeValue();
 
                         }
 
-                        @Override
-                        public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    }
 
-                        }
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                        @Override
-                        public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    }
 
-                        }
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
 
-                        @Override
-                        public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    }
 
-                        }
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                    }
 
-                        }
-                    });
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
 
-                }
-            });
+            }
+        });
 
-            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
 
-            AlertDialog dialog = builder.create();
-            dialog.setCanceledOnTouchOutside(false);
-            dialog.show();
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
     private void changeSlotToTime(String slot) {

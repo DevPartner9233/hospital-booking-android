@@ -35,7 +35,7 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private RecyclerView recyclerView;
 
-    private String BookedAPKey = "", Appointment_date, slot , Appointment_time , doctorID;
+    private String BookedAPKey = "", Appointment_date, slot , Appointment_time , doctorID, currentUID;
 
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -43,6 +43,8 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient__show_booked_appointment);
+
+        currentUID = mAuth.getCurrentUser().getUid().toString();
 
         mToolbar = (Toolbar) findViewById(R.id.show_bookedAppointment);
         setSupportActionBar(mToolbar);
@@ -59,7 +61,7 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        Query query = mDatabase.child("Booked_Appointments").child(mAuth.getCurrentUser().getUid());
+        Query query = mDatabase.child("Booked_Appointments").child(currentUID);
 
         FirebaseRecyclerOptions<BookedAppointmentList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<BookedAppointmentList>()
                 .setQuery(query, BookedAppointmentList.class)
@@ -82,11 +84,15 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                doctorID = model.getDoctor_ID().toString();
+
                                 BookedAPKey = getRef(position).getKey().toString();
+                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Key = "+BookedAPKey, Toast.LENGTH_SHORT).show();
 
                                 Appointment_date = model.getDate();
                                 Appointment_time = model.getTime();
                                 changeSlotToTime(Appointment_time);
+//                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this,"Doctor - "+doctorID, Toast.LENGTH_SHORT).show();
 
                                 alertDialog();
 
@@ -95,8 +101,6 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
                         mDatabase.child("Doctor_Details").child( model.getDoctor_ID().toString()).addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                doctorID = model.getDoctor_ID().toString();
-                                //Toast.makeText(Patient_ShowBookedAppointmentActivity.this,doctorID, Toast.LENGTH_SHORT).show();
 
                                 String doctorName = dataSnapshot.child("Name").getValue(String.class);
                                 String specialization = dataSnapshot.child("Specialization").getValue(String.class);
@@ -133,7 +137,8 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
 //                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Slot = "+slot, Toast.LENGTH_SHORT).show();
 
                 mDatabase.child("Appointment").child(doctorID).child(Appointment_date).child(slot).removeValue();
-                mDatabase.child("Booked_Appointments").child(mAuth.getCurrentUser().getUid()).child(BookedAPKey).removeValue();
+                mDatabase.child("Booked_Appointments").child(currentUID).child(BookedAPKey).removeValue();
+                onStart();
 
             }
         });
@@ -158,14 +163,6 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
             super(itemView);
 
             mView = itemView;
-
-            ImageView cancelAppointment = (ImageView) mView.findViewById(R.id.cancel_bookedAppointment);
-            cancelAppointment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
         }
 
 

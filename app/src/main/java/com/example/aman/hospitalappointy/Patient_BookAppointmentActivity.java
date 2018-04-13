@@ -205,8 +205,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
 
     }
 
-
-
     @Override
     public void onClick(View v) {
         switch(v.getId())

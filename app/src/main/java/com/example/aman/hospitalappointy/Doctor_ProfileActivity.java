@@ -1,6 +1,8 @@
 package com.example.aman.hospitalappointy;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,11 +22,10 @@ import com.google.firebase.database.ValueEventListener;
 public class Doctor_ProfileActivity extends AppCompatActivity {
 
     private TextView mName, mEmail, mSpecialization, mExperiance, mAge, mContact, mAddress, mEducation;
-    private Button mShowRosterPlanButton;
-    private Button mEditProfileButton;
+    private Button mShowRosterPlanButton, mEditProfileButton;
     private Toolbar mToolbar;
 
-    private String name,specialization,experiance,education,email,age,contact,address;
+    private String name, specialization, experiance, education, email, age, contact, address, shift;
 
     private DatabaseReference mDoctorDatabase = FirebaseDatabase.getInstance().getReference();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -55,9 +56,8 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(Doctor_ProfileActivity.this,"Show Roster Plan Clicked",Toast.LENGTH_SHORT).show();
+                alertDialogBox();
 
-                Intent showRoster_Intent = new Intent(Doctor_ProfileActivity.this,Doctor_RosterPlanActivity.class);
-                startActivity(showRoster_Intent);
 
             }
         });
@@ -85,6 +85,53 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
 
     }
 
+    private void alertDialogBox() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Doctor_ProfileActivity.this);
+
+        View view = getLayoutInflater().inflate(R.layout.roster_dialog, null);
+
+        TextView rosterShift = (TextView) view.findViewById(R.id.roster_shift);
+        TextView rosterTimingMorning = (TextView) view.findViewById(R.id.roster_time_morning);
+        TextView rosterTimingEvening = (TextView) view.findViewById(R.id.roster_time_evening);
+        TextView rosterLunchMorning = (TextView) view.findViewById(R.id.roster_lunch_morning);
+        TextView rosterLunchEvening = (TextView) view.findViewById(R.id.roster_lunch_evening);
+
+        if(shift.equals("Morning")){
+
+            rosterShift.setText(shift);
+
+            rosterTimingMorning.setVisibility(View.VISIBLE);
+            rosterTimingEvening.setVisibility(View.GONE);
+
+            rosterLunchMorning.setVisibility(View.VISIBLE);
+            rosterLunchEvening.setVisibility(View.GONE);
+
+        }else {
+
+            rosterShift.setText(shift);
+
+            rosterTimingMorning.setVisibility(View.GONE);
+            rosterTimingEvening.setVisibility(View.VISIBLE);
+
+            rosterLunchMorning.setVisibility(View.GONE);
+            rosterLunchEvening.setVisibility(View.VISIBLE);
+
+        }
+
+        builder.setView(view);
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+    }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -101,6 +148,7 @@ public class Doctor_ProfileActivity extends AppCompatActivity {
                 experiance = dataSnapshot.child("Experiance").getValue().toString();
                 age = dataSnapshot.child("Age").getValue().toString();
                 address = dataSnapshot.child("Address").getValue().toString();
+                shift = dataSnapshot.child("Shift").getValue().toString();
 
                 mName.setText(name);
                 mSpecialization.setText(specialization);

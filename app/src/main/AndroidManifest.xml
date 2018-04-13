@@ -30,12 +30,6 @@
         <activity android:name=".Doctor_EditProfileActivity"
             android:parentActivityName=".Doctor_ProfileActivity"/>
 
-        <activity android:name=".Doctor_RosterPlanActivity"
-            android:parentActivityName=".Doctor_ProfileActivity"/>
-
-        <activity android:name=".Doctor_EditRosterPlanActivity"
-            android:parentActivityName=".Doctor_RosterPlanActivity"/>
-
         <activity android:name=".Doctor_ShowAppointmentActivity"
             android:parentActivityName=".MainActivity"/>
 

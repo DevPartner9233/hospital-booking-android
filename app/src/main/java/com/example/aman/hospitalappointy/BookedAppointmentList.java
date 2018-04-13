@@ -9,14 +9,16 @@ public class BookedAppointmentList {
     private String Date;
     private String Time;
     private String Doctor_ID;
+    private String PatientID;
 
     public BookedAppointmentList() {
     }
 
-    public BookedAppointmentList(String date, String time, String doctor_ID) {
+    public BookedAppointmentList(String date, String time, String doctor_ID, String patientID) {
         this.Date = date;
         this.Time = time;
         this.Doctor_ID = doctor_ID;
+        this.PatientID = patientID;
     }
 
     public String getDate() {
@@ -41,5 +43,13 @@ public class BookedAppointmentList {
 
     public void setDoctor_ID(String doctor_ID) {
         this.Doctor_ID = doctor_ID;
+    }
+
+    public String getPatientID() {
+        return PatientID;
+    }
+
+    public void setPatientID(String patientID) {
+        this.PatientID = patientID;
     }
 }

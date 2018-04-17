@@ -16,6 +16,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -123,7 +124,7 @@ public class Fragment_Specialization extends Fragment {
                     public SpecializationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
                         View view = LayoutInflater.from(parent.getContext())
-                                .inflate(R.layout.doctorlist_item_layout, parent, false);
+                                .inflate(R.layout.singel_specialization_list, parent, false);
 
                         return new SpecializationViewHolder(view);
                     }
@@ -168,6 +169,7 @@ public class Fragment_Specialization extends Fragment {
                                 final String shift = dataSnapshot.child("Shift").getValue().toString();
 
                                 holder.setDoctorName(doctorName);
+                                holder.setSpecialization(specialization);
                                 holder.mView.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -194,7 +196,7 @@ public class Fragment_Specialization extends Fragment {
                     @Override
                     public SpecializationVH onCreateViewHolder(ViewGroup parent, int viewType) {
 
-                        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.doctorlist_item_layout, null);
+                        View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_doctor_list, null);
                         return new SpecializationVH(mView);
                     }
                 };
@@ -204,6 +206,9 @@ public class Fragment_Specialization extends Fragment {
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
+
+//        Window window = dialog.getWindow();
+//        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
     public class SpecializationVH extends RecyclerView.ViewHolder {
@@ -217,8 +222,13 @@ public class Fragment_Specialization extends Fragment {
         }
 
         public void setDoctorName(String doctorName) {
-            TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
+            TextView userName = (TextView) mView.findViewById(R.id.name_id_single_user);
             userName.setText(doctorName);
+        }
+
+        public void setSpecialization(String specialization) {
+            TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
+            userName.setText(specialization);
         }
     }
 
@@ -234,7 +244,7 @@ public class Fragment_Specialization extends Fragment {
         }
 
         public void setSpecialization(String special) {
-            TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
+            TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
             userName.setText(special);
         }
     }

@@ -160,6 +160,7 @@ public class Fragment_Date extends Fragment {
                     protected void onBindViewHolder(@NonNull final DoctorLisetVH holder, int position, @NonNull final DoctorList model) {
 
                         holder.setDoctorName(model.getName());
+                        holder.setSpecialization(model.getSpecialization());
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -187,7 +188,7 @@ public class Fragment_Date extends Fragment {
                     @Override
                     public DoctorLisetVH onCreateViewHolder(ViewGroup parent, int viewType) {
 
-                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.doctorlist_item_layout,parent,false);
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_doctor_list,parent,false);
 
                         return new DoctorLisetVH(view);
                     }
@@ -206,9 +207,14 @@ public class Fragment_Date extends Fragment {
        }
 
        public void setDoctorName(String doctorName) {
-           TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
+           TextView userName = (TextView) mView.findViewById(R.id.name_id_single_user);
            userName.setText(doctorName);
        }
-   }
+
+        public void setSpecialization(String specialization) {
+            TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
+            userName.setText(specialization);
+        }
+    }
 
 }

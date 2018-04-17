@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Doctor Name"
-            android:textColor="@color/darkGreen"
+            android:textColor="@color/most_button_Used"
             style="@style/Base.TextAppearance.AppCompat.Large" />
     </LinearLayout>
 

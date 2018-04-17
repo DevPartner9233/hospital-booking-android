@@ -100,6 +100,7 @@ public class Fragment_Doctor extends Fragment {
             protected void onBindViewHolder(@NonNull final DoctorListViewHolder holder, int position, @NonNull final DoctorList model) {
 
                 holder.setName(model.getName());
+                holder.setSpecialization(model.getSpecialization());
                 final String uid = getRef(position).getKey().toString();
                 holder.mView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -132,7 +133,7 @@ public class Fragment_Doctor extends Fragment {
             public DoctorListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
                 View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.doctorlist_item_layout, parent,false);
+                        .inflate(R.layout.single_doctor_list, parent,false);
 
                 return new DoctorListViewHolder(view);
             }
@@ -157,9 +158,14 @@ public class Fragment_Doctor extends Fragment {
 
         public void setName(String name) {
 
-            TextView userName = (TextView) mView.findViewById(R.id.doctor_name);
+            TextView userName = (TextView) mView.findViewById(R.id.name_id_single_user);
             userName.setText(name);
 
+        }
+
+        public void setSpecialization(String specialization) {
+            TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
+            userName.setText(specialization);
         }
     }
 }

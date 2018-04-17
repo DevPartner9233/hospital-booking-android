@@ -47,7 +47,7 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
 
 
     //Firebase Auth
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     //Database Reference
     private DatabaseReference mUserDetails = FirebaseDatabase.getInstance().getReference();
@@ -59,8 +59,6 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient__registration);
 
-        //Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
 
         // Toolbar
         mToolbar = (Toolbar) findViewById(R.id.register_toolbar);
@@ -197,7 +195,19 @@ public class Patient_RegistrationActivity extends AppCompatActivity {
         verifyEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sentVerication.setText("We have sent Email to "+email);
+
+                mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            sentVerication.setText("We have sent Email to "+email);
+
+                        }
+                        else {
+                            sentVerication.setText("Failed to Sent Email for Verification");
+                        }
+                    }
+                });
             }
         });
 

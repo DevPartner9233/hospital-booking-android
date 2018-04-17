@@ -1,5 +1,6 @@
 package com.example.aman.hospitalappointy;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,7 @@ public class Forgot_PasswordActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
                                 Toast.makeText(Forgot_PasswordActivity.this,"A mail has sent to Your Email",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Forgot_PasswordActivity.this,MainActivity.class));
                             }
                             else{
                                 Toast.makeText(Forgot_PasswordActivity.this,"Please Enter Correct Email To Reset Password",Toast.LENGTH_SHORT).show();

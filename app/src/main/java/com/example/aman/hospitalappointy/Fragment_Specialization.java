@@ -2,7 +2,6 @@ package com.example.aman.hospitalappointy;
 
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,16 +15,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.Key;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
  * Created by Aman on 14-Feb-18.
@@ -107,6 +101,14 @@ public class Fragment_Specialization extends Fragment {
                         final String Special = getRef(position).getKey().toString();
                         holder.setSpecialization(Special);
 
+                        if(position%2 == 0) {
+                            holder.setImage(1);
+
+                        } else{
+                            holder.setImage(2);
+
+                        }
+
                         holder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -133,6 +135,7 @@ public class Fragment_Specialization extends Fragment {
         firebaseRecyclerAdapter.startListening();
 
     }
+
 
     private void alertDialog(String special) {
 
@@ -246,6 +249,19 @@ public class Fragment_Specialization extends Fragment {
         public void setSpecialization(String special) {
             TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
             userName.setText(special);
+        }
+
+        public void setImage(int i) {
+
+            CircleImageView cr1 = (CircleImageView) mView.findViewById(R.id.profile_id_single_user);
+
+            if(i == 1){
+                cr1.setImageDrawable(getResources().getDrawable(R.mipmap.stethoscope));
+
+            }else {
+                cr1.setImageDrawable(getResources().getDrawable(R.mipmap.injection));
+            }
+
         }
     }
 }

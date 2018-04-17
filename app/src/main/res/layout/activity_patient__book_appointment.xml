@@ -12,38 +12,39 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tab_background">
+
+        <TextView
+            android:id="@+id/bookAppointment_selectedDate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Selected Date"
+            android:textStyle="bold|italic"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/bookAppointment_selectDate"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Select Date"
+            android:textColor="#ffffff"
+            android:textStyle="bold|italic"
+            android:textSize="20dp"
+            android:gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#75c643">
-
-            <TextView
-                android:id="@+id/bookAppointment_selectedDate"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Selected Date"
-                android:textStyle="bold|italic"
-                android:textColor="#ffffff"
-                android:textSize="20dp"
-                android:gravity="center" />
-
-            <TextView
-                android:id="@+id/bookAppointment_selectDate"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:text="Select Date"
-                android:textColor="#ffffff"
-                android:textStyle="bold|italic"
-                android:textSize="20dp"
-                android:gravity="center"/>
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/morning_shift"

@@ -34,14 +34,11 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_helps"
-            android:title="Helps"/>
-        <item
             android:id="@+id/nav_feedback"
             android:title="Feedback"/>
         <item
-            android:id="@+id/nav_aboutus"
-            android:title="About Us"/>
+            android:id="@+id/nav_aboutapp"
+            android:title="About App"/>
 
     </group>
 </menu>

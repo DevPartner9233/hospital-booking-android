@@ -59,7 +59,7 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
                         String userId = getIntent().getStringExtra("UserId").toString();
 
                         String date = dayOfMonth +"-"+ (month+1) +"-"+ year;
-                        Toast.makeText(Patient_DoctorProfileActivity.this, date , Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Patient_DoctorProfileActivity.this, date , Toast.LENGTH_SHORT).show();
 
                         Intent intent = new Intent(Patient_DoctorProfileActivity.this, Patient_BookAppointmentActivity.class);
                         intent.putExtra("Date",date);

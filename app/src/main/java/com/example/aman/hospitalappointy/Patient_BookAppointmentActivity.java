@@ -55,7 +55,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
         mToolbar = (Toolbar) findViewById(R.id.patient_bookAppointment);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Book Appointment");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         morningLayout = (LinearLayout) findViewById(R.id.morning_shift);
         eveningLayout = (LinearLayout) findViewById(R.id.evening_shift);

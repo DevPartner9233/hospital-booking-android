@@ -1,10 +1,7 @@
 package com.example.aman.hospitalappointy;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.drm.DrmStore;
 import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -17,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActionBarDrawerToggle mToggle;
     private NavigationView mNavigationView;
 
-    private String Type = "";
+    private String Type = "", status = "";
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -92,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
         final MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
         final MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
+        final MenuItem nav_feedback = menuNav.findItem(R.id.nav_feedback);
         MenuItem nav_logOut = menuNav.findItem(R.id.nav_logout);
         MenuItem nav_logIn = menuNav.findItem(R.id.nav_login);
 
@@ -100,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_BookedAppointment.setVisible(false);
         nav_logIn.setVisible(false);
         nav_logOut.setVisible(false);
+        nav_feedback.setVisible(false);
 
         // Check if user is signed in  or not
         if(currentUser == null){
@@ -118,10 +116,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final MenuItem nav_profile = menuNav.findItem(R.id.nav_profile);
         final MenuItem nav_ShowAppointment = menuNav.findItem(R.id.nav_showAppointment);
         final MenuItem nav_BookedAppointment = menuNav.findItem(R.id.nav_bookedAppointment);
+        final MenuItem nav_feedback = menuNav.findItem(R.id.nav_feedback);
 
         nav_profile.setVisible(false);
         nav_ShowAppointment.setVisible(false);
         nav_BookedAppointment.setVisible(false);
+        nav_feedback.setVisible(false);
 
         final String uid = mAuth.getUid().toString();
 
@@ -129,9 +129,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Type = (String) dataSnapshot.child("Type").getValue();
+                status = (String) dataSnapshot.child("Status").getValue();
+//                Toast.makeText(MainActivity.this, status+" -"+Type, Toast.LENGTH_SHORT).show();
 
                 if(Type.equals("Patient")){
                     nav_BookedAppointment.setVisible(true);
+                    nav_feedback.setVisible(true);
+
 
                     mUserDatabase.child("Patient_Details").child(uid).addValueEventListener(new ValueEventListener() {
                         @Override
@@ -153,9 +157,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     });
                 }
-                else if(Type.equals("Doctor")){
+                else if(Type.equals("Doctor") && status.equals("Approved")){
                     nav_profile.setVisible(true);
                     nav_ShowAppointment.setVisible(true);
+                    nav_feedback.setVisible(true);
+
+//                    Toast.makeText(MainActivity.this, status+" -"+Type, Toast.LENGTH_SHORT).show();
 
                     mUserDatabase.child("Doctor_Details").child(uid).addValueEventListener(new ValueEventListener() {
                         @Override
@@ -179,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     });
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "You are not authorized for this facility", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "You are not authorized for this facility or Account Under Pending", Toast.LENGTH_SHORT).show();
                     FirebaseAuth.getInstance().signOut();
                     onStart();
                 }
@@ -217,13 +224,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
 
             case R.id.nav_showAppointment:
-                Toast.makeText(getBaseContext(),"Show Appointment Clicked",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(),"Show Appointment Clicked",Toast.LENGTH_LONG).show();
                 Intent showAppointment_Intent = new Intent(MainActivity.this,Doctor_ShowAppointmentActivity.class);
                 startActivity(showAppointment_Intent);
                 break;
 
             case R.id.nav_bookedAppointment:
-                Toast.makeText(getBaseContext(),"Booked Appointment Clicked",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(),"Booked Appointment Clicked",Toast.LENGTH_LONG).show();
                 Intent bookedAppointment_Intent = new Intent(MainActivity.this,Patient_ShowBookedAppointmentActivity.class);
                 startActivity(bookedAppointment_Intent);
                 break;
@@ -240,16 +247,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getBaseContext(),"Successfully Logged Out",Toast.LENGTH_LONG).show();
                 break;
 
-            case R.id.nav_helps:
-                Toast.makeText(getBaseContext(),"Help Clicked",Toast.LENGTH_LONG).show();
-                break;
-
             case R.id.nav_feedback:
-                Toast.makeText(getBaseContext(),"Feedback Clicked",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(),"Feedback Clicked",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this,FeedbackActivity.class));
                 break;
 
-            case R.id.nav_aboutus:
-                Toast.makeText(getBaseContext(),"About Us Clicked",Toast.LENGTH_LONG).show();
+            case R.id.nav_aboutapp:
+//                Toast.makeText(getBaseContext(),"About Us Clicked",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(MainActivity.this,About_App.class));
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

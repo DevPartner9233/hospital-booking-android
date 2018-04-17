@@ -24,7 +24,8 @@
                 android:layout_height="wrap_content"
                 android:hint="Search By Doctor"
                 android:inputType="textPersonName"
-                android:maxLength="20" />
+                android:maxLength="20"
+                android:focusableInTouchMode="true"/>
 
         </android.support.design.widget.TextInputLayout>
 

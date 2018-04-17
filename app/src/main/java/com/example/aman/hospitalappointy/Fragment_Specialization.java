@@ -91,8 +91,8 @@ public class Fragment_Specialization extends Fragment {
 
         String search = mSearch.getEditText().getText().toString();
 
-        Query query = mDatabase.child("Specialization");
 
+        Query query = mDatabase.child("Specialization").orderByKey().startAt(search).endAt(search +"\uf8ff");
         FirebaseRecyclerOptions<BookedAppointmentList> firebaseRecyclerOptions = new FirebaseRecyclerOptions.Builder<BookedAppointmentList>()
                 .setQuery(query, BookedAppointmentList.class)
                 .build();
@@ -110,7 +110,7 @@ public class Fragment_Specialization extends Fragment {
                             @Override
                             public void onClick(View v) {
 
-                                Toast.makeText(getContext(), position+" = "+Special+" DoctorID = ", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getContext(), position+" = "+Special+" DoctorID = ", Toast.LENGTH_SHORT).show();
 
                                 alertDialog(Special);
 

@@ -56,39 +56,3 @@ public class BookedAppointmentList {
     }
 }
 
-//    Query query = mDatabase.child("Specialization").child(Special).orderByChild("Doctor_ID");
-//                                query.addChildEventListener(new ChildEventListener() {
-//@Override
-//public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//
-//        String myParentNode = dataSnapshot.getKey();
-//
-//        for (DataSnapshot child: dataSnapshot.getChildren()) {
-//        String key = child.getKey().toString();
-//        String value = child.getValue().toString();
-//
-//        Toast.makeText(getContext(), key+" - "+value, Toast.LENGTH_SHORT).show();
-//
-//        }
-//        }
-//
-//@Override
-//public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-//
-//        }
-//
-//@Override
-//public void onChildRemoved(DataSnapshot dataSnapshot) {
-//
-//        }
-//
-//@Override
-//public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-//
-//        }
-//
-//@Override
-//public void onCancelled(DatabaseError databaseError) {
-//
-//        }
-//        });

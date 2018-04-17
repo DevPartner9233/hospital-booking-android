@@ -2,48 +2,74 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.aman.hospitalappointy">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/heart_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"/>
-
-        <activity android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
-
-        <activity android:name=".Patient_DoctorProfileActivity"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".Patient_RegistrationActivity"
-            android:parentActivityName=".LoginActivity" />
-
-        <activity android:name=".Patient_BookAppointmentActivity" />
-        <activity android:name=".Patient_ShowBookedAppointmentActivity"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".Doctor_ProfileActivity"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".Doctor_EditProfileActivity"
-            android:parentActivityName=".Doctor_ProfileActivity"/>
-
-        <activity android:name=".Doctor_ShowAppointmentActivity"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".SplashScreenActivity" >
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Patient_DoctorProfileActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Patient_RegistrationActivity"
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Patient_BookAppointmentActivity"
+            android:parentActivityName=".Patient_DoctorProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Patient_ShowBookedAppointmentActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Doctor_ProfileActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Doctor_EditProfileActivity"
+            android:parentActivityName=".Doctor_ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Doctor_ShowAppointmentActivity"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Forgot_PasswordActivity"
+            android:parentActivityName=".LoginActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name=".Forgot_PasswordActivity"
-            android:parentActivityName=".LoginActivity" />
 
+        <activity android:name=".FeedbackActivity"
+            android:screenOrientation="portrait"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".About_App"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

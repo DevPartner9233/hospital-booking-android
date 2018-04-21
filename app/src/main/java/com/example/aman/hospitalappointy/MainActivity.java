@@ -99,13 +99,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_logOut.setVisible(false);
         nav_feedback.setVisible(false);
 
+
+
         // Check if user is signed in  or not
         if(currentUser == null){
             nav_logIn.setVisible(true);
+
+            View mView = mNavigationView.getHeaderView(0);
+            TextView userName = (TextView) mView.findViewById(R.id.header_userName);
+            TextView userEmail = (TextView) mView.findViewById(R.id.header_userEmail);
+
+            userName.setText("User Name");
+            userEmail.setText("User Email");
+
             Toast.makeText(getBaseContext(),"Your Account is not Logged In ",Toast.LENGTH_LONG).show();
         }else {
             nav_logOut.setVisible(true);
-            Toast.makeText(this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
             chechType();
         }
     }
@@ -149,6 +158,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             userName.setText(name);
                             userEmail.setText(email);
+
+                            Toast.makeText(MainActivity.this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override
@@ -161,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     nav_profile.setVisible(true);
                     nav_ShowAppointment.setVisible(true);
                     nav_feedback.setVisible(true);
+                    nav_BookedAppointment.setVisible(true);
 
 //                    Toast.makeText(MainActivity.this, status+" -"+Type, Toast.LENGTH_SHORT).show();
 
@@ -177,6 +190,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                             userName.setText(name);
                             userEmail.setText(email);
+
+                            Toast.makeText(MainActivity.this, "Your Are Logged In", Toast.LENGTH_SHORT).show();
+
                         }
 
                         @Override
@@ -255,6 +271,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_aboutapp:
 //                Toast.makeText(getBaseContext(),"About Us Clicked",Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this,About_App.class));
+                break;
+
+//            case R.id.nav_aman:
+//                Toast.makeText(this, "Aman Clicked", Toast.LENGTH_SHORT).show();
+//                break;
+//
+//            case R.id.nav_tejas:
+//                Toast.makeText(this, "Tejas Clicked", Toast.LENGTH_SHORT).show();
+//
+//                break;
+//            case R.id.nav_narendra:
+//                Toast.makeText(this, "Narendra Clicked", Toast.LENGTH_SHORT).show();
+//
+//                break;
+//            case R.id.nav_divya:
+//                Toast.makeText(this, "Divya Clicked", Toast.LENGTH_SHORT).show();
+
+//                break;
+            default:
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

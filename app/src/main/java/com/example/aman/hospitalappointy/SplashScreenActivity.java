@@ -13,6 +13,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private ImageView mSplashLogo;
     private Animation uptodown;
     private Animation downtoup;
+//    private TextView d,n,t,a;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         mSplashLogo = (ImageView) findViewById(R.id.splash_logo);
         uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
         downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
+//        d=(TextView)findViewById(R.id.divya);
+//        n=(TextView)findViewById(R.id.narendra);
+//        t=(TextView)findViewById(R.id.tejas);
+//        a=(TextView)findViewById(R.id.aman);
 
 
         mSplashText.setAnimation(downtoup);

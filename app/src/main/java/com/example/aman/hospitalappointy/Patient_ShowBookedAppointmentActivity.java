@@ -87,7 +87,7 @@ public class Patient_ShowBookedAppointmentActivity extends AppCompatActivity {
                                 doctorID = model.getDoctor_ID().toString();
 
                                 BookedAPKey = getRef(position).getKey().toString();
-                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Key = "+BookedAPKey, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(Patient_ShowBookedAppointmentActivity.this, "Key = "+BookedAPKey, Toast.LENGTH_SHORT).show();
 
                                 Appointment_date = model.getDate();
                                 Appointment_time = model.getTime();

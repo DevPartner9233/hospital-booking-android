@@ -31,7 +31,7 @@ public class About_App extends AppCompatActivity {
                 .addItem(adsElement)
                 .addGroup("Connect with us")
                 .addEmail("kumaraman367@gmail.com")
-                .addWebsite("https://github.com/amankumar367/HospitalAppointy")
+                .addWebsite("http://aman367.rf.gd")
                 .addFacebook("amcool367")
                 .addTwitter("amcool367")
                 .addInstagram("amcool367")

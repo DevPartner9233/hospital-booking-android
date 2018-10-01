@@ -14,3 +14,5 @@ App Features:
                and dotor can also update his profile through this app.
                
 # Demo of App
+
+ <img src="https://github.com/amankumar367/HospitalAppointy/blob/master/Screenshots/Hospital_Appointy.gif">

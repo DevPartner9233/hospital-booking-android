@@ -80,12 +80,12 @@ public class Patient_DoctorProfileActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        String name = getIntent().getStringExtra("Name").toString();
-        String education = getIntent().getStringExtra("Education").toString();
-        String specialization = getIntent().getStringExtra("Specialization").toString();
-        String experience = getIntent().getStringExtra("Experiance").toString();
-        String contact = getIntent().getStringExtra("Contact").toString();
-        shift = getIntent().getStringExtra("Shift").toString();
+        String name = getIntent().getStringExtra("Name");
+        String education = getIntent().getStringExtra("Education");
+        String specialization = getIntent().getStringExtra("Specialization");
+        String experience = getIntent().getStringExtra("Experiance");
+        String contact = getIntent().getStringExtra("Contact");
+        shift = getIntent().getStringExtra("Shift");
 
         mName.setText(name);
         mEducation.setText(education);

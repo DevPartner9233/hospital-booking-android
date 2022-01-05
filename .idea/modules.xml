@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Hospital Appointy.iml" filepath="$PROJECT_DIR$/.idea/Hospital Appointy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/HospitalAppointy.iml" filepath="$PROJECT_DIR$/HospitalAppointy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/HospitalAppointy.iml" filepath="$PROJECT_DIR$/.idea/HospitalAppointy.iml" />
-      <module fileurl="file://G:/aman/Android/Hospital_Appointy/Hospital Appointy/HospitalAppointy.iml" filepath="G:/aman/Android/Hospital_Appointy/Hospital Appointy/HospitalAppointy.iml" />
-      <module fileurl="file://G:/Android Apps/HospitalAppointy/HospitalAppointy.iml" filepath="G:/Android Apps/HospitalAppointy/HospitalAppointy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://G:/Android Apps/HospitalAppointy/app/app.iml" filepath="G:/Android Apps/HospitalAppointy/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Hospital-Appointy-Android.iml" filepath="$PROJECT_DIR$/.idea/modules/Hospital-Appointy-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Hospital-Appointy-Android.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Hospital-Appointy-Android.app.iml" />
     </modules>
   </component>
 </project>

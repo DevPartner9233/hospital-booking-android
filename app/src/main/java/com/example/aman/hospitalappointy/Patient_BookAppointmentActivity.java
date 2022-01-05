@@ -58,9 +58,9 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
 
         morningLayout = (LinearLayout) findViewById(R.id.morning_shift);
         eveningLayout = (LinearLayout) findViewById(R.id.evening_shift);
-        shift = getIntent().getStringExtra("Shift").toString();
+        shift = getIntent().getStringExtra("Shift");
 
-        if(shift.equals("Morning")){
+        if(shift == "Morning"){
             morningLayout.setVisibility(View.VISIBLE);
             eveningLayout.setVisibility(View.GONE);
         }else {
@@ -76,7 +76,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
 
                 if(flagChecked!=0)
                 {
-                    //Toast.makeText(Patient_BookAppointmentActivity.this, "Selected Time "+flagChecked, Toast.LENGTH_SHORT).show();
                     mDataBaseRef.child(getIntent().getStringExtra("DoctorUserId")).child(date).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -209,123 +208,93 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
         switch(v.getId())
         {
             case R.id.time1:
-                //Toast.makeText(this, "1", Toast.LENGTH_SHORT).show();
                 checkIsBooked(1);
                 break;
             case R.id.time2:
-                //Toast.makeText(this, "2", Toast.LENGTH_SHORT).show();
                 checkIsBooked(2);
                 break;
             case R.id.time3:
-                //Toast.makeText(this, "3", Toast.LENGTH_SHORT).show();
                 checkIsBooked(3);
                 break;
             case R.id.time4:
-                //Toast.makeText(this, "4", Toast.LENGTH_SHORT).show();
                 checkIsBooked(4);
                 break;
             case R.id.time5:
-                //Toast.makeText(this, "5", Toast.LENGTH_SHORT).show();
                 checkIsBooked(5);
                 break;
             case R.id.time6:
-                //Toast.makeText(this, "6", Toast.LENGTH_SHORT).show();
                 checkIsBooked(6);
                 break;
             case R.id.time7:
-                //Toast.makeText(this, "7", Toast.LENGTH_SHORT).show();
                 checkIsBooked(7);
                 break;
             case R.id.time8:
-                //Toast.makeText(this, "8", Toast.LENGTH_SHORT).show();
                 checkIsBooked(8);
                 break;
             case R.id.time9:
-                //Toast.makeText(this, "9", Toast.LENGTH_SHORT).show();
                 checkIsBooked(9);
                 break;
             case R.id.time10:
-                //Toast.makeText(this, "10", Toast.LENGTH_SHORT).show();
                 checkIsBooked(10);
                 break;
             case R.id.time11:
-                //Toast.makeText(this, "11", Toast.LENGTH_SHORT).show();
                 checkIsBooked(11);
                 break;
             case R.id.time12:
-                //Toast.makeText(this, "12", Toast.LENGTH_SHORT).show();
                 checkIsBooked(12);
                 break;
             case R.id.time13:
-                //Toast.makeText(this, "13", Toast.LENGTH_SHORT).show();
                 checkIsBooked(13);
                 break;
             case R.id.time14:
-                //Toast.makeText(this, "14", Toast.LENGTH_SHORT).show();
                 checkIsBooked(14);
                 break;
             case R.id.time15:
-                //Toast.makeText(this, "15", Toast.LENGTH_SHORT).show();
                 checkIsBooked(15);
                 break;
             case R.id.time16:
-                //Toast.makeText(this, "16", Toast.LENGTH_SHORT).show();
                 checkIsBooked(16);
                 break;
             case R.id.time17:
-                //Toast.makeText(this, "17", Toast.LENGTH_SHORT).show();
                 checkIsBooked(17);
                 break;
             case R.id.time18:
-                //Toast.makeText(this, "18", Toast.LENGTH_SHORT).show();
                 checkIsBooked(18);
                 break;
             case R.id.time19:
-                //Toast.makeText(this, "19", Toast.LENGTH_SHORT).show();
                 checkIsBooked(19);
                 break;
             case R.id.time20:
-                //Toast.makeText(this, "20", Toast.LENGTH_SHORT).show();
                 checkIsBooked(20);
                 break;
             case R.id.time21:
-                //Toast.makeText(this, "21", Toast.LENGTH_SHORT).show();
                 checkIsBooked(21);
                 break;
             case R.id.time22:
-                //Toast.makeText(this, "22", Toast.LENGTH_SHORT).show();
                 checkIsBooked(22);
                 break;
             case R.id.time23:
-                //Toast.makeText(this, "23", Toast.LENGTH_SHORT).show();
                 checkIsBooked(23);
                 break;
             case R.id.time24:
-                //Toast.makeText(this, "24", Toast.LENGTH_SHORT).show();
                 checkIsBooked(24);
                 break;
             case R.id.time25:
-                //Toast.makeText(this, "25", Toast.LENGTH_SHORT).show();
                 checkIsBooked(25);
                 break;
             case R.id.time26:
-                //Toast.makeText(this, "26", Toast.LENGTH_SHORT).show();
                 checkIsBooked(26);
                 break;
             case R.id.time27:
-                //Toast.makeText(this, "27", Toast.LENGTH_SHORT).show();
                 checkIsBooked(27);
                 break;
             case R.id.time28:
-                //Toast.makeText(this, "28", Toast.LENGTH_SHORT).show();
                 checkIsBooked(28);
                 break;
             case R.id.time29:
-                //Toast.makeText(this, "29", Toast.LENGTH_SHORT).show();
                 checkIsBooked(29);
                 break;
             case R.id.time30:
-                //Toast.makeText(this, "30", Toast.LENGTH_SHORT).show();
                 checkIsBooked(30);
                 break;
                 
@@ -859,7 +828,6 @@ public class Patient_BookAppointmentActivity extends AppCompatActivity implement
 
                 }
             });
-            //Toast.makeText(this, "Logged In", Toast.LENGTH_SHORT).show();
         }
 
     }

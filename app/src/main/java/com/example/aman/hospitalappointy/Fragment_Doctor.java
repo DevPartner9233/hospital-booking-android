@@ -107,12 +107,12 @@ public class Fragment_Doctor extends Fragment {
                     public void onClick(View view) {
                         //Toast.makeText(getContext(),model.getName(),Toast.LENGTH_LONG).show();
 
-                        String name = model.getName().toString();
-                        String specialization = model.getSpecialization().toString();
-                        String contact = model.getContact().toString();
-                        String experience = model.getExperiance().toString();
-                        String education = model.getEducation().toString();
-                        String shift = model.getShift().toString();
+                        String name = model.getName();
+                        String specialization = model.getSpecialization();
+                        String contact = model.getContact();
+                        String experience = model.getExperiance();
+                        String education = model.getEducation();
+                        String shift = model.getShift();
 
 
                         Intent intent = new Intent(getContext(),Patient_DoctorProfileActivity.class);

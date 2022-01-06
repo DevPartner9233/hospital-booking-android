@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -39,7 +38,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SpecializationFragment extends Fragment {
 
     private View rootView;
-    private TextInputLayout mSearch;
 
     private RecyclerView mRecylerView;
 
@@ -63,9 +61,11 @@ public class SpecializationFragment extends Fragment {
     }
 
     private void initView() {
-        mSearch = (TextInputLayout) rootView.findViewById(R.id.search_by_specialization);
-        EditText searchTextBox = (EditText) rootView.findViewById(R.id.special_searchtxt);
+        mRecylerView = rootView.findViewById(R.id.specialization_recyclerView);
+        mRecylerView.setHasFixedSize(true);
+        mRecylerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
 
+        EditText searchTextBox = rootView.findViewById(R.id.special_searchtxt);
         searchTextBox.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -83,9 +83,6 @@ public class SpecializationFragment extends Fragment {
             }
         });
 
-        mRecylerView = (RecyclerView) rootView.findViewById(R.id.specialization_recyclerView);
-        mRecylerView.setHasFixedSize(true);
-        mRecylerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         updateView("");
     }
 
@@ -222,12 +219,12 @@ public class SpecializationFragment extends Fragment {
         }
 
         public void setDoctorName(String doctorName) {
-            TextView userName = (TextView) mView.findViewById(R.id.name_id_single_user);
+            TextView userName = mView.findViewById(R.id.name_id_single_user);
             userName.setText(doctorName);
         }
 
         public void setSpecialization(String specialization) {
-            TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
+            TextView userName = mView.findViewById(R.id.special_id_single_user);
             userName.setText(specialization);
         }
     }
@@ -243,13 +240,13 @@ public class SpecializationFragment extends Fragment {
         }
 
         public void setSpecialization(String special) {
-            TextView userName = (TextView) mView.findViewById(R.id.special_id_single_user);
+            TextView userName = mView.findViewById(R.id.special_id_single_user);
             userName.setText(special);
         }
 
         public void setImage(int i) {
 
-            CircleImageView imageView = (CircleImageView) mView.findViewById(R.id.profile_id_single_user);
+            CircleImageView imageView = mView.findViewById(R.id.profile_id_single_user);
             if (i == 1) {
                 imageView.setImageDrawable(getResources().getDrawable(R.mipmap.stethoscope));
             } else {
